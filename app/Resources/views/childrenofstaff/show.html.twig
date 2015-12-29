@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                     <h3 class="box-title">ChildOfStaff Detail: {{  childrenOfStaff.empId }}</h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('childrenofstaff_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="col-md-8 table-hover record_properties">
+                            <tbody>
+                                <tr>
+                                    <th>Empid</th>
+                                    <td>{{ childrenOfStaff.empId }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Periodofservice</th>
+                                    <td>{{ childrenOfStaff.periodOfService }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Periodofdifficultschoolservice</th>
+                                    <td>{{ childrenOfStaff.periodOfDifficultSchoolService }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Difffromyear</th>
+                                    <td>{% if childrenOfStaff.diffFromYear %}{{ childrenOfStaff.diffFromYear|date('Y-m-d') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Difftoyear</th>
+                                    <td>{% if childrenOfStaff.diffToYear %}{{ childrenOfStaff.diffToYear|date('Y-m-d') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Unutilizedleave</th>
+                                    <td>{% if childrenOfStaff.unUtilizedLeave %}{{ childrenOfStaff.unUtilizedLeave|date('Y-m-d') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ childrenOfStaff.id }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                    <a href="{{ path('childrenofstaff_edit', { 'id': childrenOfStaff.id }) }}" class="btn btn-info pull-right">Edit</a>
+                        {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                        {{ form_end(delete_form) }}
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+    <div class="box box-info">
+        <div class="box-header with-border">
+             <h3 class="box-title">Role List</h3>
+             <button type="submit" class="btn btn-info pull-right"><a href="{{ path('role_new') }}">Create a new entry</a></button>
+        </div><!-- /.box-header -->
+         <!-- form start -->
+        <form class="form-horizontal">
+        <div class="box-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Role</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for role in roles %}
+                    <tr>
+                        <td>{{ role['id'] }}</td>
+                        <td>{{ role['role'] }}</td>
+                        <td>{{ role['description'] }}</td>
+                        
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('role_show', { 'id': role['id'] }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('role_edit', { 'id': role['id'] }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+        </div><!-- /.box-footer -->
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

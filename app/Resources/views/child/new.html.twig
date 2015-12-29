@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Child Form</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name in full</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInFull, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name in full', 'id' : 'form-nameInFull'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name with intials</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInIntials, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name with initials', 'id' : 'form-nameInIntials'} }) }}
+                            </div>
+                        </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Sex</label>
+                          <div class="col-sm-10">
+                            {{ form_widget(form.sex) }}
+                          </div>
+                      </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Religion</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.religion, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Religion', 'id' : 'form-religion'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Medium of learning</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.mediumOfLearning) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Birth Day</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.dob, { 'attr' : { 'class' : 'form-control' , 'id' : 'form-dob'} }) }}
+                            </div>
+                        </div>
+                        {{ form_rest( form ) }}
+                        <button type="submit" class="btn btn-info pull-right">Next</button>
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="box-footer">
+                        
+                        <button class="btn btn-default"><a href="{{ path('applicant_edit', { 'id': applicant.id }) }}">Back</button>
+                     </div>
+                </form>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base2.html.twig' %}
+
+{% block stylesheets %}
+        <style type="text/css">
+            body {
+                background: url('{{asset('bundles/loginlogin/img/backgrounds/1.jpg')}}');
+                background-size: cover;
+            }
+        </style>
+{% endblock %}
+
+{% block body %}
+    <body class="bg-cyan">
+        <div class="body body-m">
+        
+            <form action="{{ path('user_new') }}" class="sky-form" method="post" >
+                <header>Registration form</header>
+                <fieldset>                  
+                    <section >
+                        <label class="input">
+                            <input type="text" name="name_full" placeholder="Name in Full" required>
+                        </label>
+                    </section>
+
+                    <section >
+                        <label class="input">
+                            <input type="text" name="emp_no" placeholder="Employee no" required>
+                        </label>
+                    </section>
+                    
+                    <section >
+                        <label class="input">
+                            <input type="text" name="name_initials" placeholder="Name in Initials">
+
+                        </label>
+                    </section> 
+                    <section>
+                        <label class="input">
+                            <i class="icon-append icon-user"></i>
+                            <input type="text" name="username" placeholder="Username" required>
+                        </label>
+                    </section>              
+                    <section>
+                        <label class="input">
+                            <i class="icon-append icon-lock"></i>
+                            <input type="password" name="password" placeholder="Password" id="password" required>
+                        </label>
+                    </section>
+                    <section>
+                        <label class="input">
+                            <i class="icon-append icon-lock"></i>
+                            <input type="password" name="password_confirm" placeholder="Confirm password" id="password_confirm" oninput="check(this)" required>
+                            <script language='javascript' type='text/javascript'>
+                                function check(input) {
+                                    if (input.value != document.getElementById('password').value) {
+                                        input.setCustomValidity('Passwords Must be Matching.');
+                                    } else {
+                                        input.setCustomValidity('');
+                                }
+                            }
+                            </script>
+                        </label>
+                    </section>
+                    <section>
+                        <label class="input">
+                            <input type="text" name="nic" placeholder="NIC">
+                        </label>
+                    </section>
+                    <section>
+                        <label class="select">
+                            <select name="sex">
+                                <option value="0" selected="" disabled="">Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <i></i>
+                        </label>
+                    </section>
+                    <div class="row">
+                        <section class="col col-6">
+                            <p style="font-size:110%;">Date of Birth</p>
+                        </section>
+                        <section class="col col-6">
+                            <label class="input">
+                                <input type="date" name="dob" placeholder="Date Of Birth">
+                            </label>
+                        </section>
+                        <section class="col col-6">
+                            <p style="font-size:110%;">Role ID</p>
+                        </section>
+                        <section class="col col-6">
+                            <label class="select">
+                                <select name="role">
+                                    {% for role in roles %}
+                                        <option value="{{role.id}}">{{role.role}}</option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        </section>
+                    </div>
+                </fieldset>
+                <footer>
+                    <button href="{{ path('user_index') }}" type="submit" value="Create" name="submit" class="button">Submit</button>
+                </footer>
+            </form>
+            
+        </div>
+    
+</body>
+
+{% endblock %}
