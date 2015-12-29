@@ -1,0 +1,29 @@
+child_index:
+    path:     /
+    defaults: { _controller: "ApplicationBundle:Child:index" }
+    methods:  GET
+
+child_show:
+    path:     /{id}/show
+    defaults: { _controller: "ApplicationBundle:Child:show" }
+    methods:  GET
+
+child_new:
+    path:     /new
+    defaults: { _controller: "ApplicationBundle:Child:new" }
+    methods:  [GET, POST]
+
+child_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ApplicationBundle:Child:edit" }
+    methods:  [GET, POST]
+
+child_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ApplicationBundle:Child:delete" }
+    methods:  DELETE
+
+applicant_child_show:
+    path:     /{id}/show_app_child
+    defaults: { _controller: "ApplicationBundle:Child:showAC" }
+    methods:  GET

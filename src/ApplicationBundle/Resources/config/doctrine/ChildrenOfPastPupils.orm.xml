@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ApplicationBundle\Entity\ChildrenOfPastPupils" table="children_of_past_pupils">
+    <indexes>
+      <index name="fk_children_of_past_pupils_school1_idx" columns="school_id"/>
+      <index name="fk_children_of_past_pupils_Applicant1_idx" columns="Applicant_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id_UNIQUE" columns="id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fromYear" type="date" column="from_year" nullable="true"/>
+    <field name="toYear" type="date" column="to_year" nullable="true"/>
+    <field name="fromGrade" type="integer" column="from_grade" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="toGrade" type="integer" column="to_grade" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="nameInFull" type="string" column="name_in_full" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nameInInitial" type="string" column="name_in_initial" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="school" target-entity="School" fetch="LAZY">
+      <join-columns>
+        <join-column name="school_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="applicant" target-entity="Applicant" fetch="LAZY">
+      <join-columns>
+        <join-column name="Applicant_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

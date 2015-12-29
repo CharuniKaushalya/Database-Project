@@ -1,0 +1,33 @@
+user_index:
+    path:     /
+    defaults: { _controller: "ApplicationBundle:User:index" }
+    methods:  GET
+
+user_show:
+    path:     /{id}/show
+    defaults: { _controller: "ApplicationBundle:User:show" }
+    methods:  GET
+
+user_new:
+    path:     /new
+    defaults: { _controller: "ApplicationBundle:User:new" }
+    methods:  [GET, POST]
+
+user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ApplicationBundle:User:edit" }
+    methods:  [GET, POST]
+
+user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ApplicationBundle:User:delete" }
+    methods:  DELETE
+
+user_login:
+    path:     /login
+    defaults: { _controller: "ApplicationBundle:User:login" }
+    methods:  [GET, POST]
+
+loggout:
+    path:     /loggout
+    defaults: { _controller: "ApplicationBundle:User:logout" }

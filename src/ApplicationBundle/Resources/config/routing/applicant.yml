@@ -1,0 +1,30 @@
+applicant_index:
+    path:     /
+    defaults: { _controller: "ApplicationBundle:Applicant:index" }
+    methods:  GET
+
+applicant_show:
+    path:     /{id}/show
+    defaults: { _controller: "ApplicationBundle:Applicant:show" }
+    methods:  GET
+
+applicant_new:
+    path:     /new
+    defaults: { _controller: "ApplicationBundle:Applicant:new" }
+    methods:  [GET, POST]
+
+applicant_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ApplicationBundle:Applicant:edit" }
+    methods:  [GET, POST]
+
+applicant_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ApplicationBundle:Applicant:delete" }
+    methods:  DELETE
+
+applicant_preferrence:
+    path:     /{id}/preferrence
+    defaults: { _controller: "ApplicationBundle:Applicant:preff" }
+    methods:  [GET, POST]
+

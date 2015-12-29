@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ApplicationBundle\Entity\ChildrenOfStaff" table="children_of_staff">
+    <indexes>
+      <index name="fk_children_of_staff_Applicant1_idx" columns="Applicant_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="emp_id_UNIQUE" columns="emp_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="empId" type="string" column="emp_id" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="periodOfService" type="decimal" column="period_of_service" precision="10" scale="0" nullable="true"/>
+    <field name="periodOfDifficultSchoolService" type="decimal" column="period_of_difficult_school_service" precision="10" scale="0" nullable="true"/>
+    <field name="diffFromYear" type="datetime" column="diff_from_year" nullable="true"/>
+    <field name="diffToYear" type="datetime" column="diff_to_year" nullable="true"/>
+    <field name="unUtilizedLeave" type="datetime" column="un_utilized_leave" nullable="true"/>
+    <many-to-one field="applicant" target-entity="Applicant" fetch="LAZY">
+      <join-columns>
+        <join-column name="Applicant_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
