@@ -1,0 +1,44 @@
+{% extends 'base2.html.twig' %}
+
+{% block stylesheets %}
+        <style type="text/css">
+            body {
+                background: url('{{asset('bundles/loginlogin/img/backgrounds/1.jpg')}}');
+                background-size: cover;
+            }
+        </style>
+{% endblock %}
+
+{% block body %}
+    <body class="bg-cyan">
+        <div class="body body-m">
+        
+            <form class="sky-form" method="post" >
+            	<header>Please Sign In</header>
+                <fieldset> 
+	            <section>
+	                <label class="input">
+	                    <i class="icon-append icon-user"></i>
+	                         <input type="text" name="username" placeholder="Username" maxlength="35" size="4" required>
+	                    </label>
+	            </section>
+	            <section>
+	                <label class="input">
+	                    <i class="icon-append icon-lock"></i>
+	                    <input type="password" name="password" placeholder="Password" id="password" required>
+	                </label>
+	            </section> 
+		        <input type="checkbox" name="remember" value="remember-me" checked>Remember me
+		        
+		         </fieldset>
+                <footer>
+	            <button class="btn btn-info pull-right" type="submit">Sign in</button>
+	            <a href="{{path('user_new')}}" >Sign Up</a>
+	            </footer>
+            </form>
+            
+        </div>
+    
+</body>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1></h1>
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gardian Details</h3>
+                    <button class="btn btn-info pull-right"><a href="{{ path('applicant_new') }}">Create a new entry</a></button>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name in full</th>
+                                <th>Name in intials</th>
+                                <th>Permanent Address</th>
+                                <th>Grama Niladari Divion</th>
+                                <th>Divsional Scretary Area</th>
+                                <th>District</th>
+                                <th>Dob</th>
+                                <th>Nic</th>
+                                <th>Whether srilankan</th>
+                                <th>No Years In Electoral Register</th>
+                                <th>No Schools Located Closer</th>
+                                <th>Id</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for applicant in applicants %}
+                            <tr>
+                            <td>{{ applicant['id']}}</td>
+                                <td><a href="{{ path('applicant_show', { 'id': applicant['id'] }) }}">{{ applicant['name_in_full'] }}</td>
+                                <td>{{ applicant['name_in_initials'] }}</td>
+                                <td>{{ applicant['permanent_address'] }}</td>
+                                <td>{{ applicant['grama_niladari_divion'] }}</td>
+                                <td>{{ applicant['divsional_scretary_area'] }}</td>
+                                <td>{{ applicant['district']}}</td>
+                                <td>{% if applicant['dob'] %}{{ applicant['dob']|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ applicant['nic'] }}</td>
+                                <td>{% if applicant['wether_srilankan'] %}Yes{% else %}No{% endif %}</td>
+                                <td>{{ applicant['no_years_in_electoral_register'] }}</td>
+                                <td>{{ applicant['no_schools_located_closer'] }}</td>
+                                <td>{{ applicant['id'] }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('applicant_show', { 'id': applicant['id'] }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('applicant_edit', { 'id': applicant['id'] }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

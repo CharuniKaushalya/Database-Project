@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gardian Form</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name in full</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInFull, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name in full', 'id' : 'form-nameInFull'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name with intials</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInInitials, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name with initials', 'id' : 'form-nameInIntials'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">NIC</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nic, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'National Identicard NO', 'id' : 'form-nic'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Religion</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.religion, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Religion', 'id' : 'form-religion'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Whether Srilankan</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.wetherSrilankan) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Address</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.permanentAddress, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Permanent Address', 'id' : 'form-permanentAddress'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">District</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.district, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'District', 'id' : 'form-district'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Divitional Secretary Area</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.divsionalScretaryArea, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Divitional Secretary Area', 'id' : 'form-divsionalScretaryArea'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Grama Niladari Division</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.gramaNiladariDivion, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Grama Niladari Division', 'id' : 'form-gramaNiladariDivion'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">No Years In Electoral Register</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.noYearsInElectoralRegister, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'No Years In Electoral Register', 'id' : 'form-noYearsInElectoralRegister'} }) }}
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        {{ form_rest( form ) }}                       
+                        <button type="submit" class="btn btn-info pull-right">Next</button>
+                        {{ form_end(form) }}
+
+                        <button class="btn btn-default"><a href="{{ path('applicant_index') }}">Back</a></button>
+                     </div><!-- /.box-footer -->
+                </form>
+              </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+

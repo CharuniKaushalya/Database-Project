@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Child Details</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nameinfull</th>
+                                <td>{{ child.nameInFull }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nameinintials</th>
+                                <td>{{ child.nameInIntials }}</td>
+                            </tr>
+                            <tr>
+                                <th>Sex</th>
+                                <td>{{ child.sex }}</td>
+                            </tr>
+                            <tr>
+                                <th>Religion</th>
+                                <td>{{ child.religion }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mediumoflearning</th>
+                                <td>{{ child.mediumOfLearning }}</td>
+                            </tr>
+                            <tr>
+                                <th>Dob</th>
+                                <td>{% if child.dob %}{{ child.dob|date('Y-m-d') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ child.id }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                <a href="{{ path('child_index') }}" class="btn btn-info">Back to the list</a>
+                {{ form_start(delete_form) }}
+                <a href="{{ path('child_edit', { 'id': child.id }) }}" class="btn btn-info pull-right">Edit</a>
+                    <input type="submit" class="btn btn-danger pull-right" value="Delete">
+                {{ form_end(delete_form) }}
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

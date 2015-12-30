@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>User list</h1>
+
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>Nameinfull</th>
+                <th>Nameinintials</th>
+                <th>Username</th>
+                <th>Empno</th>
+                <th>Password</th>
+                <th>Remembertoken</th>
+                <th>Confirmationcode</th>
+                <th>Sex</th>
+                <th>Dob</th>
+                <th>Nic</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.nameInFull }}</a></td>
+                <td>{{ user.nameInIntials }}</td>
+                <td>{{ user.userName }}</td>
+                <td>{{ user.empNo }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.rememberToken }}</td>
+                <td>{{ user.confirmationCode }}</td>
+                <td>{{ user.sex }}</td>
+                <td>{% if user.dob %}{{ user.dob|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ user.nic }}</td>
+                <td>{{ user.id }}</td>
+                <td>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+  
+
+{% endblock %}

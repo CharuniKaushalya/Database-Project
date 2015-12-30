@@ -1,0 +1,200 @@
+<?php
+
+namespace ApplicantBundle\Entity;
+
+/**
+ * ChildrenOfOtoeos
+ */
+class ChildrenOfOtoeos
+{
+    /**
+     * @var \DateTime
+     */
+    private $lastTransferReceived;
+
+    /**
+     * @var string
+     */
+    private $beforeAddressWrkPlace;
+
+    /**
+     * @var string
+     */
+    private $afterAddressWrkPlace;
+
+    /**
+     * @var string
+     */
+    private $distance;
+
+    /**
+     * @var string
+     */
+    private $noSclAddmitted;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \ApplicantBundle\Entity\Applicant
+     */
+    private $applicant;
+
+
+    /**
+     * Set lastTransferReceived
+     *
+     * @param \DateTime $lastTransferReceived
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setLastTransferReceived($lastTransferReceived)
+    {
+        $this->lastTransferReceived = $lastTransferReceived;
+
+        return $this;
+    }
+
+    /**
+     * Get lastTransferReceived
+     *
+     * @return \DateTime
+     */
+    public function getLastTransferReceived()
+    {
+        return $this->lastTransferReceived;
+    }
+
+    /**
+     * Set beforeAddressWrkPlace
+     *
+     * @param string $beforeAddressWrkPlace
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setBeforeAddressWrkPlace($beforeAddressWrkPlace)
+    {
+        $this->beforeAddressWrkPlace = $beforeAddressWrkPlace;
+
+        return $this;
+    }
+
+    /**
+     * Get beforeAddressWrkPlace
+     *
+     * @return string
+     */
+    public function getBeforeAddressWrkPlace()
+    {
+        return $this->beforeAddressWrkPlace;
+    }
+
+    /**
+     * Set afterAddressWrkPlace
+     *
+     * @param string $afterAddressWrkPlace
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setAfterAddressWrkPlace($afterAddressWrkPlace)
+    {
+        $this->afterAddressWrkPlace = $afterAddressWrkPlace;
+
+        return $this;
+    }
+
+    /**
+     * Get afterAddressWrkPlace
+     *
+     * @return string
+     */
+    public function getAfterAddressWrkPlace()
+    {
+        return $this->afterAddressWrkPlace;
+    }
+
+    /**
+     * Set distance
+     *
+     * @param string $distance
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get distance
+     *
+     * @return string
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Set noSclAddmitted
+     *
+     * @param string $noSclAddmitted
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setNoSclAddmitted($noSclAddmitted)
+    {
+        $this->noSclAddmitted = $noSclAddmitted;
+
+        return $this;
+    }
+
+    /**
+     * Get noSclAddmitted
+     *
+     * @return string
+     */
+    public function getNoSclAddmitted()
+    {
+        return $this->noSclAddmitted;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set applicant
+     *
+     * @param \ApplicantBundle\Entity\Applicant $applicant
+     *
+     * @return ChildrenOfOtoeos
+     */
+    public function setApplicant(\ApplicantBundle\Entity\Applicant $applicant = null)
+    {
+        $this->applicant = $applicant;
+
+        return $this;
+    }
+
+    /**
+     * Get applicant
+     *
+     * @return \ApplicantBundle\Entity\Applicant
+     */
+    public function getApplicant()
+    {
+        return $this->applicant;
+    }
+}
+

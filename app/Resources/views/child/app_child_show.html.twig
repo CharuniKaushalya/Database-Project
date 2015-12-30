@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Child list</h1>
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Child Details</h3>
+                    <button class="btn btn-info pull-right"  value="Delete"><a href="{{ path('child_new', { 'id': id }) }}">Add a Child</a></button>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nameinfull</th>
+                                <th>Nameinintials</th>
+                                <th>Sex</th>
+                                <th>Religion</th>
+                                <th>Mediumoflearning</th>
+                                <th>Dob</th>
+                                <th>Id</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for child in children %}
+                            <tr>
+                                <td><a href="{{ path('child_show', { 'id': child.id }) }}">{{ child.nameInFull }}</a></td>
+                                <td>{{ child.nameInIntials }}</td>
+                                <td>{{ child.sex }}</td>
+                                <td>{{ child.religion }}</td>
+                                <td>{{ child.mediumOfLearning }}</td>
+                                <td>{% if child.dob %}{{ child.dob|date('Y-m-d') }}{% endif %}</td>
+                                <td>{{ child.id }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('child_show', { 'id': child.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('child_edit', { 'id': child.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div><!-- /.box-body -->
+                <div class="box-footer">
+                <button class="btn btn-info pull-right"  value="Delete"><a href="{{ path('applicant_preferrence', { 'id': id }) }}">Continue</a></button>
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}

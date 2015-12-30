@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+    <div class="box box-info">
+        <div class="box-header with-border">
+             <h3 class="box-title">ChildrenOfOtoeos list</h3>
+        </div><!-- /.box-header -->
+         <!-- form start -->
+        <form class="form-horizontal">
+        <div class="box-body">
+
+            <table class="table"> 
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Last transfer received</th>
+                        <th>Before Address workplace</th>
+                        <th>After address wrkplace</th>
+                        <th>Distance</th>
+                        <th>No school addmitted</th>
+                        
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for childrenOfOtoeo in childrenOfOtoeos %}
+                    <tr>
+                        <td><a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}">{{ childrenOfOtoeo.id }}</a></td>
+                        <td>{% if childrenOfOtoeo['last_transfer_received'] %}{{ childrenOfOtoeo['last_transfer_received']|date('Y-m-d') }}{% endif %}</td>
+                        <td>{{ childrenOfOtoeo['before_address_wrk_place'] }}</td>
+                        <td>{{ childrenOfOtoeo['after_address_wrk_place'] }}</td>
+                        <td>{{ childrenOfOtoeo['distance'] }}</td>
+                        <td>{{ childrenOfOtoeo['no_scl_addmitted'] }}</td>
+                        
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+    </div><!-- /.box-body -->
+        <div class="box-footer">
+        </div><!-- /.box-footer -->
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add a School</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.name, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name', 'id' : 'form-name'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.address, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Address', 'id' : 'form-address'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Total Students</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.totStudents, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Total Students', 'id' : 'form-totStudents'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Total Vacancies</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.totVacancies, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Total Vacancies', 'id' : 'form-totVacancies'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Start Date</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.startDate, { 'attr' : { 'class' : 'form-control', 'id' : 'form-startDate'} }) }}
+                            </div>
+                        </div>
+
+                        {{ form_rest( form ) }}
+                        <button type="submit" class="btn btn-info pull-right">Save</button>
+                        {{ form_end(form) }}
+                    </div><!-- /.box-body -->
+                </form>
+                <div class="box-footer">
+                <a href="{{ path('school_index') }}" class="btn btn-info ">Back to the list</a>
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>   
+{% endblock %}

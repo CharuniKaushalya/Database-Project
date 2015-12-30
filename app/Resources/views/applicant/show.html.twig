@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Applicant</h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gardian Details</h3>
+                    <button class="btn btn-info pull-right"><a href="{{ path('applicant_new') }}">Create a new Applicant</a></button>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Nameinfull</th>
+                                <td>{{ applicant.nameInFull }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nameininitials</th>
+                                <td>{{ applicant.nameInInitials }}</td>
+                            </tr>
+                            <tr>
+                                <th>Permanentaddress</th>
+                                <td>{{ applicant.permanentAddress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Gramaniladaridivion</th>
+                                <td>{{ applicant.gramaNiladariDivion }}</td>
+                            </tr>
+                            <tr>
+                                <th>Divsionalscretaryarea</th>
+                                <td>{{ applicant.divsionalScretaryArea }}</td>
+                            </tr>
+                            <tr>
+                                <th>District</th>
+                                <td>{{ applicant.district }}</td>
+                            </tr>
+                            <tr>
+                                <th>Dob</th>
+                                <td>{% if applicant.dob %}{{ applicant.dob|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Nic</th>
+                                <td>{{ applicant.nic }}</td>
+                            </tr>
+                            <tr>
+                                <th>Wethersrilankan</th>
+                                <td>{% if applicant.wetherSrilankan %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Noyearsinelectoralregister</th>
+                                <td>{{ applicant.noYearsInElectoralRegister }}</td>
+                            </tr>
+                            <tr>
+                                <th>Noschoolslocatedcloser</th>
+                                <td>{{ applicant.noSchoolsLocatedCloser }}</td>
+                            </tr>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ applicant.id }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer">                     
+                    <button type="submit" class="btn btn-info pull-right"><a href="{{ path('applicant_edit', { 'id': applicant.id }) }}">Edit</a></button>
+                    {{ form_start(delete_form) }}
+                        <input type="submit" class="btn btn-danger pull-right" stlye="margin-right:12px" value="Delete">
+                    {{ form_end(delete_form) }}
+
+
+                    <button class="btn btn-default"><a href="{{ path('applicant_index') }}">Back</a></button>
+
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                     <h3 class="box-title">Schol Detail: {{ school.id }}</h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('school_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="col-md-8 table-hover record_properties">
+                            <tbody>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>{{ school.name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td>{{ school.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Totstudents</th>
+                                    <td>{{ school.totStudents }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Totvacancies</th>
+                                    <td>{{ school.totVacancies }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Startdate</th>
+                                    <td>{% if school.startDate %}{{ school.startDate|date('Y-m-d') }}{% endif %}</td>
+                                </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ school.id }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                         <button  class="btn btn-info pull-right"><a href="{{ path('school_edit', { 'id': school.id }) }}">Edit</a></button>
+                        {{ form_start(delete_form) }}
+                           
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}
