@@ -1,5 +1,0 @@
-applicant_homepage:
-    path:     /
-    defaults: { _controller: ApplicantBundle:Default:index }
-
-
