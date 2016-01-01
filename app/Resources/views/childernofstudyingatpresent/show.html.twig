@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                     <h3 class="box-title"></h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('childernofstudyingatpresent_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                   <table class="col-md-8 table-hover record_properties">
+                        <tbody>
+                            <tr>
+                                <th>Name in full</th>
+                                <td>{{ childernOfStudyingAtPresent.nameInFull }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name in initial</th>
+                                <td>{{ childernOfStudyingAtPresent.nameInInitial }}</td>
+                            </tr>
+                            <tr>
+                                <th>Grade</th>
+                                <td>{{ childernOfStudyingAtPresent.grade }}</td>
+                            </tr>
+                            <tr>
+                                <th>Addmission No</th>
+                                <td>{{ childernOfStudyingAtPresent.addmissionNo }}</td>
+                            </tr>
+                            <tr>
+                                <th>Addmission grade</th>
+                                <td>{{ childernOfStudyingAtPresent.addmissionGrade }}</td>
+                            </tr>
+                            <tr>
+                                <th>Gradesspent</th>
+                                <td>{{ childernOfStudyingAtPresent.gradesSpent }}</td>
+                            </tr>
+                            <tr>
+                                <th>Applicant Applicant No</th>
+                                <td>{{ childernOfStudyingAtPresent.applicant.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ childernOfStudyingAtPresent.id }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                         <button  class="btn btn-info pull-right"><a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}">Edit</a></button>
+                        {{ form_start(delete_form) }}
+                           
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Children of Past Pupils Details</h3>
+                    <button type="submit" class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_new') }}">Create a new entry</a></button>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nameinfull</th>
+                            <th>Nameininitial</th>
+                            <th>Fromyear</th>
+                            <th>Toyear</th>
+                            <th>Fromgrade</th>
+                            <th>Tograde</th>        
+                            <th>Id</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for childrenOfPastPupil in childrenOfPastPupils %}
+                        <tr>
+                            <td><a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}">{{ childrenOfPastPupil.name_in_full }}</td>
+                            <td>{{ childrenOfPastPupil.name_in_initial }}</td>
+                            <td>{% if childrenOfPastPupil.from_year %}{{ childrenOfPastPupil.from_year|date('Y-m-d') }}{% endif %}</td>
+                            <td>{% if childrenOfPastPupil.to_year %}{{ childrenOfPastPupil.to_year|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ childrenOfPastPupil.from_grade }}</td>
+                            <td>{{ childrenOfPastPupil.to_grade }}</td>
+                            <td>{{ childrenOfPastPupil.id }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+                <div class="box-footer">
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -11,8 +11,8 @@
         <div class="col-md-10"> 
     <div class="box box-info">
         <div class="box-header with-border">
-             <h3 class="box-title">Role List</h3>
-             <button type="submit" class="btn btn-info pull-right"><a href="{{ path('role_new') }}">Create a new entry</a></button>
+             <h3 class="box-title">previlege List</h3>
+             <button type="submit" class="btn btn-info pull-right"><a href="{{ path('previlege_new') }}">Create a new entry</a></button>
         </div><!-- /.box-header -->
          <!-- form start -->
         <form class="form-horizontal">
@@ -21,26 +21,24 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Role</th>
+                        <th>Previlege</th>
                         <th>Description</th>
-                        <th>View Previlges</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for role in roles %}
+                {% for previlege in previleges %}
                     <tr>
-                        <td>{{ role['id'] }}</td>
-                        <td>{{ role['role'] }}</td>
-                        <td>{{ role['description'] }}</td>
-                        <th><a href="{{ path('role_previlege', { 'id': role['id'] }) }}">View Previlges</a></th>
+                        <td>{{ previlege['id'] }}</td>
+                        <td>{{ previlege['previlege'] }}</td>
+                        <td>{{ previlege['description'] }}</td>
                         
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('role_show', { 'id': role['id'] }) }}">show</a>
+                                    <a href="{{ path('previlege_show', { 'id': previlege['id'] }) }}">show</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('role_edit', { 'id': role['id'] }) }}">edit</a>
+                                    <a href="{{ path('previlege_edit', { 'id': previlege['id'] }) }}">edit</a>
                                 </li>
                             </ul>
                         </td>

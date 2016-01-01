@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                     <h3 class="box-title">Previlege Detail: {{ previlege.id }}</h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('previlege_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="col-md-8 table-hover record_properties">
+                            <tbody>
+                                <tr>
+                                    <th>Previlege</th>
+                                    <td>{{ previlege.previlege }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Descriptiom</th>
+                                    <td>{{ previlege.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ previlege.id }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                         <button  class="btn btn-info pull-right"><a href="{{ path('previlege_edit', { 'id': previlege.id }) }}">Edit</a></button>
+                        {{ form_start(delete_form) }}
+                           
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

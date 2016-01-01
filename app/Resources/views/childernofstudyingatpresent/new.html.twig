@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Children of Studying at Present Form</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" method="post" {{ form_enctype(form) }}>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name in full</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInFull, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name in full', 'id' : 'form-nameInFull'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name with intials</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.nameInInitial, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Name with initials', 'id' : 'form-nameInIntial'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Grade</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.grade, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Grade', 'id' : 'form-grade', 'required':'true'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Addmission Grade</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.addmissionGrade, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Addmission Grade', 'id' : 'form-addmissionGrade', 'required':'true'} }) }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Addmission No</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.addmissionNo, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Addmission No', 'id' : 'form-addmissionNo', 'required':'true'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Grades Spent</label>
+                            <div class="col-sm-10">
+                                {{ form_widget(form.gradesSpent, { 'attr' : { 'class' : 'form-control' , 'placeholder' : 'Grades Spent', 'id' : 'form-gradesSpent', 'required':'true'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">School</label>
+                            <div class="col-sm-10">
+                                <label class="select">
+                                    <select name="school">
+                                        {% for school in schools %}
+                                            <option value="{{school.id}}">{{school.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info pull-right" name="submit">Next</button>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+
+                        <button class="btn btn-default"><a href="{{ path('childernofstudyingatpresent_index') }}">Back</a></button>
+                     </div><!-- /.box-footer -->
+                </form>
+              </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

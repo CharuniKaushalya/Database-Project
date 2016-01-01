@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                <h3 class="box-title">Previleges list for {{role.role}}</h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('role_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Previlegs</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for previlege in previleges %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ previlege['previlege'] }}</td>
+                                <td>{{ previlege['description'] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                    <form class="form-horizontal" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Add previlege</label>
+                            <div class="col-sm-3">
+                                <select name="previlege">
+                                    {% for previlege in other_previleges %}
+                                        <option value="{{ previlege.id }}">{{ previlege.previlege}}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+                            <button type="submit" class="btn btn-info" name="submit">Add</button>
+                        </div>
+                        </form>
+                        
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

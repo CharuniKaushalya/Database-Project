@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                     <h3 class="box-title"></h3>
+                     <button  class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_index') }}">Back to the list</a></button>
+                </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                   <table class="col-md-8 table-hover record_properties">
+                    <tbody>
+                        <tr>
+                            <th>Fromyear</th>
+                            <td>{% if childrenOfPastPupil.fromYear %}{{ childrenOfPastPupil.fromYear|date('Y-m-d') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Toyear</th>
+                            <td>{% if childrenOfPastPupil.toYear %}{{ childrenOfPastPupil.toYear|date('Y-m-d') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Fromgrade</th>
+                            <td>{{ childrenOfPastPupil.fromGrade }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tograde</th>
+                            <td>{{ childrenOfPastPupil.toGrade }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nameinfull</th>
+                            <td>{{ childrenOfPastPupil.nameInFull }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nameininitial</th>
+                            <td>{{ childrenOfPastPupil.nameInInitial }}</td>
+                        </tr>
+                        <tr>
+                            <th>Applicantapplicantno</th>
+                            <td>{{ childrenOfPastPupil.applicant.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ childrenOfPastPupil.id }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div><!-- /.box-body -->
+                    <div class="box-footer">
+                         <button  class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">Edit</a></button>
+                        {{ form_start(delete_form) }}
+                           
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        {{ form_end(delete_form) }}
+                    </div><!-- /.box-footer -->
+            </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}
