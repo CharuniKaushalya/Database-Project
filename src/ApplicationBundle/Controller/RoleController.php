@@ -89,6 +89,34 @@ class RoleController extends Controller
         ;
     }
 
+    public function previlegeAction(Request $request,Role $role)
+    {
+        $result = get_preveliges_by_role($role);
+        $previleges = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($previleges, $row);
+        }
+        $postData = $request->request->all();
+
+        $result2 = get_other_previlegs($role);
+        $others = array();
+        while ($row = mysqli_fetch_assoc($result2)) {
+            array_push ($others, $row);
+        }
+            
+        if(isset($postData['submit'])){
+            dump($postData);
+            insert_pre_for_role($role->getId(),$postData['previlege']);
+            return $this->redirectToRoute('role_previlege',array('id' => $role->getId()));
+        }
+        
+        return $this->render('role/previlege.html.twig', array(
+            'previleges' => $previleges,
+            'other_previleges' => $others,
+            'role' => $role,
+        ));
+    }
+
 }
 
 function insertRole($data){
@@ -127,6 +155,48 @@ function get_roles(){
     return $result;
 
 }
+
+function get_preveliges_by_role($role){
+     $connection = connect();
+    //2.perform query
+    $query = "SELECT previlege.id,previlege,previlege.description from ";
+    $query .= "(role left outer join role_has_previlege on role.id = role_has_previlege.role_id)";
+    $query .= " left outer join previlege on role_has_previlege.previlege_id = previlege.id";
+    $query .= " where role.id='{$role->getId()}'";
+    $result = mysqli_query($connection,$query);
+    confirm_query($result);
+    colse_connection($connection);
+    return $result;
+
+}
+
+function get_other_previlegs($role){
+     $connection = connect();
+    //2.perform query
+    $query = "SELECT * FROM previlege where id not in ";
+    $query .= "(select id from previlege left outer join role_has_previlege on previlege.id = role_has_previlege.previlege_id ";
+    $query .= "where role_has_previlege.role_id='{$role->getId()}')";
+    $result = mysqli_query($connection,$query);
+    confirm_query($result);
+    colse_connection($connection);
+    return $result;
+
+}
+
+function insert_pre_for_role($role_id,$previlege_id){
+    $connection = connect();
+    $query = "insert into role_has_previlege (";
+    $query .= " role_id, previlege_id";
+    $query .= ") values( ";
+    $query .= " '{$role_id}','{$previlege_id}'";
+    $query .= ")";
+    $result = mysqli_query($connection,$query);
+    confirm_query($result);
+    colse_connection($connection);
+    return $result;
+
+}
+
 function updateRole($data,$role){
     $connection = connect();
     $id = $role->getId();;
