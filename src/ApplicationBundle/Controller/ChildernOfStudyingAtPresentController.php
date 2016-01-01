@@ -41,12 +41,10 @@ class ChildernOfStudyingAtPresentController extends Controller
         $form = $this->createForm(new ChildernOfStudyingAtPresentType(), $childernOfStudyingAtPresent);
         $form->handleRequest($request);
         $Applicant_id = $request->get('id');
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $postData = $request->request->all();
+        $postData = $request->request->all();
+        if (isset($postData['submit'])) {
             $id = insert_children_of_studying_at_present($postData,$Applicant_id);
-
-            return $this->redirectToRoute('childrenofstaff_new', array('id' => $id));
+            return $this->redirectToRoute('childernofstudyingatpresent_new', array('id' => $Applicant_id));
         }
 
         $result = get_schools();
@@ -165,11 +163,13 @@ function insert_children_of_studying_at_present($postData,$Applicant_id){
     $query = "insert into childern_of_studying_at_present (";
     $query .= " name_in_full,name_in_initial,grade,addmission_grade,addmission_no,grades_spent,school_id,applicant_id";
     $query .= ") values( ";
-    $query .= " '{$childrenofstudyingatpresent->getNameInFull()}','{$childrenofstudyingatpresent->getNameInInitial()}',{$childrenofstudyingatpresent->getGrade()},'{$childrenofstudyingatpresent->getAddmissionGrade()}','{$childrenofstudyingatpresent->getAddmissionNo()}','{$childrenofstudyingatpresent->getGradesSpent()}',1,{'$Applicant_id'}";
+    $query .= " '{$childrenofstudyingatpresent->getNameInFull()}','{$childrenofstudyingatpresent->getNameInInitial()}',{$childrenofstudyingatpresent->getGrade()},{$childrenofstudyingatpresent->getAddmissionGrade()},'{$childrenofstudyingatpresent->getAddmissionNo()}','{$childrenofstudyingatpresent->getGradesSpent()}',1,{$Applicant_id}";
     $query .= ")";
+    echo  $query;
     $result = mysqli_query($connection,$query);
     if ($result) {
         $query = "select id from childern_of_studying_at_present where name_in_full= '{$childrenofstudyingatpresent->getNameInFull()}' LIMIT 1";
+        echo  $query;
         $result = mysqli_query($connection,$query);
         confirm_query($result);
         $row = mysqli_fetch_assoc($result);
@@ -180,10 +180,9 @@ function insert_children_of_studying_at_present($postData,$Applicant_id){
 
 }
 
-function update_children_of_studying_at_present($postData,$childernOfStudyingAtPresent){
+function update_children_of_studying_at_present($postData,$childrenofstudyingatpresent){
 
     $connection = connect();
-    $childrenofstudyingatpresent = new ChildernOfStudyingAtPresent();
     $form = $postData['Applicationbundle_ChildernOfStudyingAtPresent'];
     $childrenofstudyingatpresent->setNameInFull($form['nameInFull']);
     $childrenofstudyingatpresent->setNameInInitial($form['nameInInitial']);
@@ -193,9 +192,10 @@ function update_children_of_studying_at_present($postData,$childernOfStudyingAtP
     $childrenofstudyingatpresent->setGradesSpent($form['gradesSpent']);
     
     $query = "UPDATE childern_of_studying_at_present SET ";
-    $query .= " name_in_full =  '{$childrenofstudyingatpresent->getNameInFull()}',name_in_initial='{$childrenofstudyingatpresent->getNameInInitial()}',grade='{$childrenofstudyingatpresent->getGrade()}',addmission_grade = '{$childrenofstudyingatpresent->getAddmissionGrade()}',addmission_no = '{$childrenofstudyingatpresent->getAddmissionNo()}',grades_spent = '{$childrenofstudyingatpresent->getGradesSpent()}',school_id=1";
-    $query .= "WHERE id = {$childernOfStudyingAtPresent->getId()} ";
+    $query .= " name_in_full =  '{$childrenofstudyingatpresent->getNameInFull()}',name_in_initial='{$childrenofstudyingatpresent->getNameInInitial()}',grade='{$childrenofstudyingatpresent->getGrade()}',addmission_grade = '{$childrenofstudyingatpresent->getAddmissionGrade()}',addmission_no = '{$childrenofstudyingatpresent->getAddmissionNo()}',grades_spent = '{$childrenofstudyingatpresent->getGradesSpent()}' ";
+    $query .= "WHERE id = {$childrenofstudyingatpresent->getId()} ";
     $query .= "LIMIT 1";
+    echo $query;
     $result = mysqli_query($connection,$query);
     confirm_query($result);
     colse_connection($connection);

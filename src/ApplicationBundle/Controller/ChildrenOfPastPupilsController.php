@@ -89,7 +89,7 @@ class ChildrenOfPastPupilsController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $postData = $request->request->all();
-            update_children_of_past_pupils($postData,$childernOfStudyingAtPresent);
+            update_children_of_past_pupils($postData,$childrenOfPastPupil);
 
             return $this->redirectToRoute('childrenofpastpupils_edit', array('id' => $childrenOfPastPupil->getId()));
         }
@@ -183,9 +183,8 @@ function insert_children_of_past_pupils($postData,$Applicant_id){
 
 }
 
-function update_children_of_past_pupils($postData,$childernOfStudyingAtPresent){
+function update_children_of_past_pupils($postData,$childrenofpastpupils){
     $connection = connect();
-    $childrenofpastpupils = new ChildrenOfPastPupils();
     $form = $postData['Applicationbundle_ChildrenOfPastPupils'];
     
     $childrenofpastpupils->setFromGrade($form['fromGrade']);
@@ -197,9 +196,16 @@ function update_children_of_past_pupils($postData,$childernOfStudyingAtPresent){
     //$childrenofpastpupils->setSchool($form['school']);
 
     $query = "UPDATE children_of_past_pupils SET ";
-    $query .= " from_grade = '{$childrenofpastpupils->getFromGrade()}' ,to_grade = '{$childrenofpastpupils->getToGrade()}',from_year= '{$childrenofpastpupils->getFromYear()}',to_year = '{$childrenofpastpupils->getToYear()}' ,name_in_full = '{$childrenofpastpupils->getNameInFull()}',name_in_initial = '{$childrenofpastpupils->getNameInInitial()}',school_id=1";
+    $query .= "from_grade = {$childrenofpastpupils->getFromGrade()}, ";
+    $query .= "to_grade = {$childrenofpastpupils->getToGrade()}, "; 
+    $query .= "from_year= '{$childrenofpastpupils->getFromYear()}', ";
+    $query .= "to_year = '{$childrenofpastpupils->getToYear()}', ";
+    $query .= "name_in_full = '{$childrenofpastpupils->getNameInFull()}', ";
+    $query .= "name_in_initial = '{$childrenofpastpupils->getNameInInitial()}', ";
+    $query .= "school_id=1 ";
     $query .= "WHERE id = {$childrenofpastpupils->getId()} ";
     $query .= "LIMIT 1";
+    echo $query;
     $result = mysqli_query($connection,$query);
     confirm_query($result);
     colse_connection($connection);
