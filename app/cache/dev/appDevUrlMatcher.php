@@ -258,6 +258,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_applicant_child_show:
 
+            // child_preferrence
+            if (preg_match('#^/child/(?P<id>[^/]++)/preferrence$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_child_preferrence;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'child_preferrence')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildController::preffAction',));
+            }
+            not_child_preferrence:
+
         }
 
         if (0 === strpos($pathinfo, '/school')) {
@@ -589,6 +600,206 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'role_delete')), array (  '_controller' => 'ApplicationBundle\\Controller\\RoleController::deleteAction',));
             }
             not_role_delete:
+
+            // role_previlege
+            if (preg_match('#^/role/(?P<id>[^/]++)/previlege$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_role_previlege;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'role_previlege')), array (  '_controller' => 'ApplicationBundle\\Controller\\RoleController::previlegeAction',));
+            }
+            not_role_previlege:
+
+        }
+
+        if (0 === strpos($pathinfo, '/previlege')) {
+            // previlege_index
+            if (rtrim($pathinfo, '/') === '/previlege') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_previlege_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'previlege_index');
+                }
+
+                return array (  '_controller' => 'ApplicationBundle\\Controller\\PrevilegeController::indexAction',  '_route' => 'previlege_index',);
+            }
+            not_previlege_index:
+
+            // previlege_show
+            if (preg_match('#^/previlege/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_previlege_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'previlege_show')), array (  '_controller' => 'ApplicationBundle\\Controller\\PrevilegeController::showAction',));
+            }
+            not_previlege_show:
+
+            // previlege_new
+            if ($pathinfo === '/previlege/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_previlege_new;
+                }
+
+                return array (  '_controller' => 'ApplicationBundle\\Controller\\PrevilegeController::newAction',  '_route' => 'previlege_new',);
+            }
+            not_previlege_new:
+
+            // previlege_edit
+            if (preg_match('#^/previlege/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_previlege_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'previlege_edit')), array (  '_controller' => 'ApplicationBundle\\Controller\\PrevilegeController::editAction',));
+            }
+            not_previlege_edit:
+
+            // previlege_delete
+            if (preg_match('#^/previlege/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_previlege_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'previlege_delete')), array (  '_controller' => 'ApplicationBundle\\Controller\\PrevilegeController::deleteAction',));
+            }
+            not_previlege_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/child')) {
+            if (0 === strpos($pathinfo, '/childrenOfPastPupils')) {
+                // childrenofpastpupils_index
+                if (rtrim($pathinfo, '/') === '/childrenOfPastPupils') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_childrenofpastpupils_index;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'childrenofpastpupils_index');
+                    }
+
+                    return array (  '_controller' => 'ApplicationBundle\\Controller\\ChildrenOfPastPupilsController::indexAction',  '_route' => 'childrenofpastpupils_index',);
+                }
+                not_childrenofpastpupils_index:
+
+                // childrenofpastpupils_show
+                if (preg_match('#^/childrenOfPastPupils/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_childrenofpastpupils_show;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childrenofpastpupils_show')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildrenOfPastPupilsController::showAction',));
+                }
+                not_childrenofpastpupils_show:
+
+                // childrenofpastpupils_new
+                if ($pathinfo === '/childrenOfPastPupils/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_childrenofpastpupils_new;
+                    }
+
+                    return array (  '_controller' => 'ApplicationBundle\\Controller\\ChildrenOfPastPupilsController::newAction',  '_route' => 'childrenofpastpupils_new',);
+                }
+                not_childrenofpastpupils_new:
+
+                // childrenofpastpupils_edit
+                if (preg_match('#^/childrenOfPastPupils/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_childrenofpastpupils_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childrenofpastpupils_edit')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildrenOfPastPupilsController::editAction',));
+                }
+                not_childrenofpastpupils_edit:
+
+                // childrenofpastpupils_delete
+                if (preg_match('#^/childrenOfPastPupils/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'DELETE') {
+                        $allow[] = 'DELETE';
+                        goto not_childrenofpastpupils_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childrenofpastpupils_delete')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildrenOfPastPupilsController::deleteAction',));
+                }
+                not_childrenofpastpupils_delete:
+
+            }
+
+            if (0 === strpos($pathinfo, '/childernOfStudying')) {
+                // childernofstudyingatpresent_index
+                if (rtrim($pathinfo, '/') === '/childernOfStudying') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_childernofstudyingatpresent_index;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'childernofstudyingatpresent_index');
+                    }
+
+                    return array (  '_controller' => 'ApplicationBundle\\Controller\\ChildernOfStudyingAtPresentController::indexAction',  '_route' => 'childernofstudyingatpresent_index',);
+                }
+                not_childernofstudyingatpresent_index:
+
+                // childernofstudyingatpresent_show
+                if (preg_match('#^/childernOfStudying/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_childernofstudyingatpresent_show;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childernofstudyingatpresent_show')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildernOfStudyingAtPresentController::showAction',));
+                }
+                not_childernofstudyingatpresent_show:
+
+                // childernofstudyingatpresent_new
+                if ($pathinfo === '/childernOfStudying/new') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_childernofstudyingatpresent_new;
+                    }
+
+                    return array (  '_controller' => 'ApplicationBundle\\Controller\\ChildernOfStudyingAtPresentController::newAction',  '_route' => 'childernofstudyingatpresent_new',);
+                }
+                not_childernofstudyingatpresent_new:
+
+                // childernofstudyingatpresent_edit
+                if (preg_match('#^/childernOfStudying/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                        goto not_childernofstudyingatpresent_edit;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childernofstudyingatpresent_edit')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildernOfStudyingAtPresentController::editAction',));
+                }
+                not_childernofstudyingatpresent_edit:
+
+                // childernofstudyingatpresent_delete
+                if (preg_match('#^/childernOfStudying/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'DELETE') {
+                        $allow[] = 'DELETE';
+                        goto not_childernofstudyingatpresent_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'childernofstudyingatpresent_delete')), array (  '_controller' => 'ApplicationBundle\\Controller\\ChildernOfStudyingAtPresentController::deleteAction',));
+                }
+                not_childernofstudyingatpresent_delete:
+
+            }
 
         }
 

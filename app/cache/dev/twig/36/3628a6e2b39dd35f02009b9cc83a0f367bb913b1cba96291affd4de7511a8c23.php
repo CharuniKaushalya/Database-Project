@@ -21,20 +21,20 @@ class __TwigTemplate_0fe73f107aac5d0c5f8c2a925201f2c8c6c2c75bfd8de2a4ae452d61857
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_abf3169c3962cf12cfdc0463605c56673d8f0b61d57cd92e5e394d58dcc2d605 = $this->env->getExtension("native_profiler");
-        $__internal_abf3169c3962cf12cfdc0463605c56673d8f0b61d57cd92e5e394d58dcc2d605->enter($__internal_abf3169c3962cf12cfdc0463605c56673d8f0b61d57cd92e5e394d58dcc2d605_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "childrenofstaff/new.html.twig"));
+        $__internal_7cfbc8b36cba39078cc94fcbbecdce40f3ac65606726cd0da36827fd01203f3e = $this->env->getExtension("native_profiler");
+        $__internal_7cfbc8b36cba39078cc94fcbbecdce40f3ac65606726cd0da36827fd01203f3e->enter($__internal_7cfbc8b36cba39078cc94fcbbecdce40f3ac65606726cd0da36827fd01203f3e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "childrenofstaff/new.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_abf3169c3962cf12cfdc0463605c56673d8f0b61d57cd92e5e394d58dcc2d605->leave($__internal_abf3169c3962cf12cfdc0463605c56673d8f0b61d57cd92e5e394d58dcc2d605_prof);
+        $__internal_7cfbc8b36cba39078cc94fcbbecdce40f3ac65606726cd0da36827fd01203f3e->leave($__internal_7cfbc8b36cba39078cc94fcbbecdce40f3ac65606726cd0da36827fd01203f3e_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_0e4c521af2d8432265c4bace6301a81077a81b974563f6e1b66527d83d1a285b = $this->env->getExtension("native_profiler");
-        $__internal_0e4c521af2d8432265c4bace6301a81077a81b974563f6e1b66527d83d1a285b->enter($__internal_0e4c521af2d8432265c4bace6301a81077a81b974563f6e1b66527d83d1a285b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_809bcf4f8d384b3908ebd4d9fed0ccb67d8447bda5b8ff67638cc4b82f3299b1 = $this->env->getExtension("native_profiler");
+        $__internal_809bcf4f8d384b3908ebd4d9fed0ccb67d8447bda5b8ff67638cc4b82f3299b1->enter($__internal_809bcf4f8d384b3908ebd4d9fed0ccb67d8447bda5b8ff67638cc4b82f3299b1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <h1></h1>
@@ -51,7 +51,7 @@ class __TwigTemplate_0fe73f107aac5d0c5f8c2a925201f2c8c6c2c75bfd8de2a4ae452d61857
                     <a href=\"";
         // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("childrenofotoeos_new", array("id" => (isset($context["Applicant_id"]) ? $context["Applicant_id"] : $this->getContext($context, "Applicant_id")))), "html", null, true);
-        echo "\" class=\"btn btn-info\">Back to the list</a>
+        echo "\" class=\"btn btn-info pull-right\">Skip</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form class=\"form-horizontal\" method=\"post\" ";
@@ -144,7 +144,7 @@ class __TwigTemplate_0fe73f107aac5d0c5f8c2a925201f2c8c6c2c75bfd8de2a4ae452d61857
     </div> 
 ";
         
-        $__internal_0e4c521af2d8432265c4bace6301a81077a81b974563f6e1b66527d83d1a285b->leave($__internal_0e4c521af2d8432265c4bace6301a81077a81b974563f6e1b66527d83d1a285b_prof);
+        $__internal_809bcf4f8d384b3908ebd4d9fed0ccb67d8447bda5b8ff67638cc4b82f3299b1->leave($__internal_809bcf4f8d384b3908ebd4d9fed0ccb67d8447bda5b8ff67638cc4b82f3299b1_prof);
 
     }
 
@@ -177,7 +177,7 @@ class __TwigTemplate_0fe73f107aac5d0c5f8c2a925201f2c8c6c2c75bfd8de2a4ae452d61857
 /*             <div class="box box-info">*/
 /*                 <div class="box-header with-border">*/
 /*                     <h3 class="box-title">ChildrenOfStaff creation</h3>*/
-/*                     <a href="{{ path('childrenofotoeos_new' , { 'id': Applicant_id }) }}" class="btn btn-info">Back to the list</a>*/
+/*                     <a href="{{ path('childrenofotoeos_new' , { 'id': Applicant_id }) }}" class="btn btn-info pull-right">Skip</a>*/
 /*                 </div><!-- /.box-header -->*/
 /*                 <!-- form start -->*/
 /*                 <form class="form-horizontal" method="post" {{ form_enctype(form) }}>*/
