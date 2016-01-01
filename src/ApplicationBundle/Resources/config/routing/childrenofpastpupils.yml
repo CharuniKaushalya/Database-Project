@@ -1,0 +1,24 @@
+childrenofpastpupils_index:
+    path:     /
+    defaults: { _controller: "ApplicationBundle:ChildrenOfPastPupils:index" }
+    methods:  GET
+
+childrenofpastpupils_show:
+    path:     /{id}/show
+    defaults: { _controller: "ApplicationBundle:ChildrenOfPastPupils:show" }
+    methods:  GET
+
+childrenofpastpupils_new:
+    path:     /new
+    defaults: { _controller: "ApplicationBundle:ChildrenOfPastPupils:new" }
+    methods:  [GET, POST]
+
+childrenofpastpupils_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ApplicationBundle:ChildrenOfPastPupils:edit" }
+    methods:  [GET, POST]
+
+childrenofpastpupils_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ApplicationBundle:ChildrenOfPastPupils:delete" }
+    methods:  DELETE

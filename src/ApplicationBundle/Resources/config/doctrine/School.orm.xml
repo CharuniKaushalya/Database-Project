@@ -29,15 +29,6 @@
       </options>
     </field>
     <field name="startDate" type="date" column="start_date" nullable="true"/>
-    <many-to-many field="applicant" target-entity="Applicant" inversed-by="school" fetch="LAZY">
-      <join-table name="applicant_has_school">
-        <join-columns>
-          <join-column name="school_id" referenced-column-name="id"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="Applicant_id" referenced-column-name="id"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
+    <many-to-many field="child" target-entity="Child" mapped-by="school" fetch="LAZY"/>
   </entity>
 </doctrine-mapping>

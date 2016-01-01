@@ -10,17 +10,17 @@ class User
     /**
      * @var string
      */
-    private $firstName;
+    private $nameInFull;
 
     /**
      * @var string
      */
-    private $middleName;
+    private $nameInIntials;
 
     /**
      * @var string
      */
-    private $lastName;
+    private $userName;
 
     /**
      * @var string
@@ -69,75 +69,75 @@ class User
 
 
     /**
-     * Set firstName
+     * Set nameInFull
      *
-     * @param string $firstName
+     * @param string $nameInFull
      *
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setNameInFull($nameInFull)
     {
-        $this->firstName = $firstName;
+        $this->nameInFull = $nameInFull;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get nameInFull
      *
      * @return string
      */
-    public function getFirstName()
+    public function getNameInFull()
     {
-        return $this->firstName;
+        return $this->nameInFull;
     }
 
     /**
-     * Set middleName
+     * Set nameInIntials
      *
-     * @param string $middleName
+     * @param string $nameInIntials
      *
      * @return User
      */
-    public function setMiddleName($middleName)
+    public function setNameInIntials($nameInIntials)
     {
-        $this->middleName = $middleName;
+        $this->nameInIntials = $nameInIntials;
 
         return $this;
     }
 
     /**
-     * Get middleName
+     * Get nameInIntials
      *
      * @return string
      */
-    public function getMiddleName()
+    public function getNameInIntials()
     {
-        return $this->middleName;
+        return $this->nameInIntials;
     }
 
     /**
-     * Set lastName
+     * Set userName
      *
-     * @param string $lastName
+     * @param string $userName
      *
      * @return User
      */
-    public function setLastName($lastName)
+    public function setUserName($userName)
     {
-        $this->lastName = $lastName;
+        $this->userName = $userName;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get userName
      *
      * @return string
      */
-    public function getLastName()
+    public function getUserName()
     {
-        return $this->lastName;
+        return $this->userName;
     }
 
     /**
@@ -340,92 +340,5 @@ class User
     public function getRole()
     {
         return $this->role;
-    }
-    /**
-     * @var string
-     */
-    private $nameInFull;
-
-    /**
-     * @var string
-     */
-    private $nameInIntials;
-
-    /**
-     * @var string
-     */
-    private $userName;
-
-
-    /**
-     * Set nameInFull
-     *
-     * @param string $nameInFull
-     *
-     * @return User
-     */
-    public function setNameInFull($nameInFull)
-    {
-        $this->nameInFull = $nameInFull;
-
-        return $this;
-    }
-
-    /**
-     * Get nameInFull
-     *
-     * @return string
-     */
-    public function getNameInFull()
-    {
-        return $this->nameInFull;
-    }
-
-    /**
-     * Set nameInIntials
-     *
-     * @param string $nameInIntials
-     *
-     * @return User
-     */
-    public function setNameInIntials($nameInIntials)
-    {
-        $this->nameInIntials = $nameInIntials;
-
-        return $this;
-    }
-
-    /**
-     * Get nameInIntials
-     *
-     * @return string
-     */
-    public function getNameInIntials()
-    {
-        return $this->nameInIntials;
-    }
-
-    /**
-     * Set userName
-     *
-     * @param string $userName
-     *
-     * @return User
-     */
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
-    /**
-     * Get userName
-     *
-     * @return string
-     */
-    public function getUserName()
-    {
-        return $this->userName;
     }
 }

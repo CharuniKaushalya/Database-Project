@@ -55,7 +55,7 @@ class ChildrenOfOtoeosController extends Controller
             $postData = $request->request->all();
             $id = insertotoes($postData,$Applicant_id);
 
-            return $this->redirectToRoute('applicant_index');
+            return $this->redirectToRoute('child_new', array('applicant_id' => $Applicant_id));
         }
 
         return $this->render('childrenofotoeos/new.html.twig', array(

@@ -48,7 +48,7 @@ class ApplicantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $postData = $request->request->all();
             $id = insert2($postData);
-            return $this->redirectToRoute('child_new', array('id' => $id));
+            return $this->redirectToRoute('childrenofstaff_new', array('id' => $id));
         }
 
         return $this->render('applicant/new.html.twig', array(
@@ -60,7 +60,7 @@ class ApplicantController extends Controller
     public function preffAction(Request $request)
     {
         $Applicant_id = $request->get('id');
-        $result = get_all_schools();
+        $result = gets_schools();
         $schools = array();
         while ($row = mysqli_fetch_assoc($result)) {
             array_push ($schools, $row);
@@ -201,7 +201,7 @@ function get_all_applicants(){
     return $result;
 
 }
-function get_all_schools(){
+function gets_schools(){
      $connection = connect();
     //2.perform query
     $query = "SELECT * from school";

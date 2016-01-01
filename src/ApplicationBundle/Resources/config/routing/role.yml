@@ -22,3 +22,8 @@ role_delete:
     path:     /{id}/delete
     defaults: { _controller: "ApplicationBundle:Role:delete" }
     methods:  DELETE
+
+role_previlege:
+    path:     /{id}/previlege
+    defaults: { _controller: "ApplicationBundle:Role:previlege" }
+    methods:  [GET, POST]

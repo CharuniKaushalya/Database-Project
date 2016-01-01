@@ -213,4 +213,43 @@ class School
     {
         return $this->applicant;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $child;
+
+
+    /**
+     * Add child
+     *
+     * @param \ApplicationBundle\Entity\Child $child
+     *
+     * @return School
+     */
+    public function addChild(\ApplicationBundle\Entity\Child $child)
+    {
+        $this->child[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \ApplicationBundle\Entity\Child $child
+     */
+    public function removeChild(\ApplicationBundle\Entity\Child $child)
+    {
+        $this->child->removeElement($child);
+    }
+
+    /**
+     * Get child
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChild()
+    {
+        return $this->child;
+    }
 }

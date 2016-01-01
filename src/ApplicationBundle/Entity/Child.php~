@@ -225,4 +225,50 @@ class Child
     {
         return $this->applicant;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $school;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->school = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add school
+     *
+     * @param \ApplicationBundle\Entity\School $school
+     *
+     * @return Child
+     */
+    public function addSchool(\ApplicationBundle\Entity\School $school)
+    {
+        $this->school[] = $school;
+
+        return $this;
+    }
+
+    /**
+     * Remove school
+     *
+     * @param \ApplicationBundle\Entity\School $school
+     */
+    public function removeSchool(\ApplicationBundle\Entity\School $school)
+    {
+        $this->school->removeElement($school);
+    }
+
+    /**
+     * Get school
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
 }

@@ -50,7 +50,7 @@ class ChildController extends Controller
         $form = $this->createForm(new ChildType(), $child);
         $form->handleRequest($request);
 
-        $id = $request->get('id');
+        $id = $request->get('applicant_id');
         $applicant = $this->getDoctrine()->getRepository('ApplicationBundle:Applicant')->find($id);
         $child->setApplicant($applicant);
 
@@ -59,7 +59,7 @@ class ChildController extends Controller
             $em->persist($child);
             $em->flush();
             $Ap = $applicant;
-            return $this->redirectToRoute('applicant_child_show', array('id' => $id));
+            return $this->redirectToRoute('child_preferrence',array('id' => $id, 'child_id' => $child->getId()));
         }
 
         return $this->render('child/new.html.twig', array(
@@ -67,6 +67,48 @@ class ChildController extends Controller
             'applicant' => $applicant,
             'form' => $form->createView(),
         ));
+    }
+
+    public function preffAction(Request $request)
+    {
+        $Applicant_id = $request->get('id');
+        $child_id = $request->get('child_id');
+        $result = get_all_schools();
+        $schools = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($schools, $row);
+        }
+
+        $postData = $request->request->all();
+        if (isset($postData['submit']) && isset($postData['school'])) {
+            $count = 0;
+            foreach ($postData['school'] as $school) {
+                if(isset($school['sid']) && $school['id'] != ""){
+                    $connection = connect();
+                    $no = $school['id'];
+                    $sch_id = $school['sid'];
+                    $query = "insert into child_has_school (";
+                    $query .= " child_id, school_id, preferrence_no";
+                    $query .= ") values( ";
+                    $query .= " '{$child_id}','{$sch_id}','{$no}'";
+                    $query .= ")";
+                    $result = mysqli_query($connection,$query);
+                    colse_connection($connection);
+            
+        }
+        $count++;
+        }
+        return $this->redirectToRoute('applicant_child_show', array('id' => $Applicant_id));
+        }
+
+        
+        return $this->render('child/preferrence.html.twig', array(
+            'schools' => $schools,
+            'id' => $Applicant_id,
+            'child_id' => $child_id
+        ));
+        
+
     }
 
     /**
@@ -166,6 +208,16 @@ function get_all_children(){
      $connection = connect();
     //2.perform query
     $query = "SELECT * from child";
+    $result = mysqli_query($connection,$query);
+    confirm_query($result);
+    colse_connection($connection);
+    return $result;
+
+}
+function get_all_schools(){
+     $connection = connect();
+    //2.perform query
+    $query = "SELECT * from school";
     $result = mysqli_query($connection,$query);
     confirm_query($result);
     colse_connection($connection);

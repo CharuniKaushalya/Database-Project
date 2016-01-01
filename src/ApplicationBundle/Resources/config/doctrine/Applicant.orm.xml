@@ -59,7 +59,6 @@
         <option name="fixed"/>
       </options>
     </field>
-    <many-to-many field="school" target-entity="School" mapped-by="applicant" fetch="LAZY"/>
     <many-to-many field="markingScheme" target-entity="MarkingScheme" mapped-by="applicant" fetch="LAZY"/>
   </entity>
 </doctrine-mapping>

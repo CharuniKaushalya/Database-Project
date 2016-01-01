@@ -29,3 +29,15 @@ web_user:
 web_role:
     resource: "@ApplicationBundle/Resources/config/routing/role.yml"
     prefix:   /role
+
+web_previlege:
+    resource: "@ApplicationBundle/Resources/config/routing/previlege.yml"
+    prefix:   /previlege
+
+web_childrenofpastpupils:
+    resource: "@ApplicationBundle/Resources/config/routing/childrenofpastpupils.yml"
+    prefix:   /childrenOfPastPupils
+
+web_childernofstudyingatpresent:
+    resource: "@ApplicationBundle/Resources/config/routing/childernofstudyingatpresent.yml"
+    prefix:   /childernOfStudying

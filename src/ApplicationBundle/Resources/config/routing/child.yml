@@ -27,3 +27,8 @@ applicant_child_show:
     path:     /{id}/show_app_child
     defaults: { _controller: "ApplicationBundle:Child:showAC" }
     methods:  GET
+
+child_preferrence:
+    path:     /{id}/preferrence
+    defaults: { _controller: "ApplicationBundle:Child:preff" }
+    methods:  [GET, POST]

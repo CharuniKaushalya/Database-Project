@@ -41,5 +41,15 @@
         <join-column name="Applicant_id" referenced-column-name="id"/>
       </join-columns>
     </many-to-one>
+    <many-to-many field="school" target-entity="School" inversed-by="child" fetch="LAZY">
+      <join-table name="child_has_school">
+        <join-columns>
+          <join-column name="child_id" referenced-column-name="id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="school_id" referenced-column-name="id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
   </entity>
 </doctrine-mapping>
