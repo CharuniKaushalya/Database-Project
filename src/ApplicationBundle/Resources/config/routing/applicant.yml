@@ -28,3 +28,8 @@ applicant_preferrence:
     defaults: { _controller: "ApplicationBundle:Applicant:preff" }
     methods:  [GET, POST]
 
+applicant_showall:
+    path:     /{id}/showall
+    defaults: { _controller: "ApplicationBundle:Applicant:showAll" }
+    methods:  GET
+
