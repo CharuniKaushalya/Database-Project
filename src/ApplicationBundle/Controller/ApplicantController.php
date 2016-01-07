@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ApplicationBundle\Entity\Applicant;
 use WebBundle\Entity\School;
 use ApplicationBundle\Form\ApplicantType;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * Applicant controller.
@@ -108,6 +108,54 @@ class ApplicantController extends Controller
         return $this->render('applicant/show.html.twig', array(
             'applicant' => $applicant,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    public function showAllAction(Applicant $applicant)
+    {
+        $id = $applicant->getId();
+        $connection = connect();
+
+        $query = "SELECT * from child where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childs = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childs, $row);
+        }
+
+        $query = "SELECT * from children_of_staff where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfStaff=mysqli_fetch_assoc($result);
+
+        $query = "SELECT * from childern_of_studying_at_present where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childernOfStudyingAtPresent=mysqli_fetch_assoc($result);
+
+        $query = "SELECT * from children_of_otoeos where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfOtoeo=mysqli_fetch_assoc($result);
+
+        $query = "SELECT * from children_of_past_pupils where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfPastPupil=mysqli_fetch_assoc($result);
+        colse_connection($connection);
+        
+        //$childrenOfPastPupil = $this->getDoctrine()->getRepository('ApplicationBundle:ChildrenOfPastPupils')->find($applicant);
+
+        return $this->render('applicant/showall.html.twig', array(
+           
+            'applicant' => $applicant,
+            'childs' => $childs,
+            'childrenOfStaff' => $childrenOfStaff,
+            'childernOfStudyingAtPresent' => $childernOfStudyingAtPresent,
+            'childrenOfOtoeo' => $childrenOfOtoeo,
+            'childrenOfPastPupil' => $childrenOfPastPupil,
+
         ));
     }
 
