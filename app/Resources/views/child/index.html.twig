@@ -15,39 +15,49 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
 
-                    <table class="table">
+                    <table class="mytable table">
                         <thead>
                             <tr>
-                                <th>Nameinfull</th>
-                                <th>Nameinintials</th>
+                                <th>Id</th>
+                                <th>Name in full</th>
+                                <th>Name in intials</th>
                                 <th>Sex</th>
                                 <th>Religion</th>
-                                <th>Mediumoflearning</th>
-                                <th>Dob</th>
-                                <th>Id</th>
+                                <th>Medium of learning</th>
+                                <th>Date of Birth</th>
+                                <th>View Details</th>
+                                {% if  app.session.get('login') %}
+                                {% if app.session.get('login').getRoleId() == 1 or app.session.get('login').getRoleId() == 1 %}
                                 <th>Actions</th>
+                                {% endif %}
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
                         {% for child in children %}
                             <tr>
+                                <td>{{ child['id'] }}</td>
                                 <td><a href="{{ path('child_show', { 'id': child['id'] }) }}">{{ child['name_in_full'] }}</a></td>
                                 <td>{{ child['name_in_intials'] }}</td>
                                 <td>{{ child['sex'] }}</td>
                                 <td>{{ child['religion'] }}</td>
                                 <td>{{ child['medium_of_learning'] }}</td>
                                 <td>{% if child['dob'] %}{{ child['dob']|date('Y-m-d') }}{% endif %}</td>
-                                <td>{{ child['id'] }}</td>
+                                <td><a href="{{ path('child_showall', { 'id': child['id'] }) }}">View Details</a></td>
+                                {% if  app.session.get('login') %}
+                                {% if app.session.get('login').getRoleId() == 1 or app.session.get('login').getRoleId() == 1 %}
                                 <td>
-                                    <ul>
+                                    <ul class="showedit">
                                         <li>
-                                            <a href="{{ path('child_show', { 'id': child['id'] }) }}">show</a>
+                                            <a href="{{ path('child_show', { 'id': child['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('child_edit', { 'id': child['id'] }) }}">edit</a>
+                                            <a href="{{ path('child_edit', { 'id': child['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                         </li>
                                     </ul>
                                 </td>
+                                {% endif %}
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>

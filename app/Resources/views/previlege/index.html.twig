@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1></h1>
     <div class="container-fluid">
     <div class="row" style="height:20px;"> 
     </div>
@@ -12,33 +11,40 @@
     <div class="box box-info">
         <div class="box-header with-border">
              <h3 class="box-title">previlege List</h3>
-             <button type="submit" class="btn btn-info pull-right"><a href="{{ path('previlege_new') }}">Create a new entry</a></button>
+             <a type="submit" class="btn btn-info pull-right" href="{{ path('previlege_new') }}">Create a new entry</a>
         </div><!-- /.box-header -->
-         <!-- form start -->
-        <form class="form-horizontal">
-        <div class="box-body">
-            <table class="table">
+        <div class="box-body" id="ex6">
+             <div class="form-group">
+                    <div class="col-sm-4">
+                        <fieldset class="controls">
+                             <input id="search-filtering" class="form-control" placeholder="Type here to filter" type="text">
+                        </fieldset>
+                    </div>
+            </div></br></br>
+            <table class="mytable table">
                 <thead>
                     <tr>
                         <th></th>
                         <th>Previlege</th>
                         <th>Description</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for previlege in previleges %}
-                    <tr>
+                    <tr class="instafilta-target">
                         <td>{{ previlege['id'] }}</td>
                         <td>{{ previlege['previlege'] }}</td>
                         <td>{{ previlege['description'] }}</td>
+
                         
                         <td>
-                            <ul>
+                            <ul class="showedit">
                                 <li>
-                                    <a href="{{ path('previlege_show', { 'id': previlege['id'] }) }}">show</a>
+                                    <a href="{{ path('previlege_show', { 'id': previlege['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('previlege_edit', { 'id': previlege['id'] }) }}">edit</a>
+                                    <a href="{{ path('previlege_edit', { 'id': previlege['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                 </li>
                             </ul>
                         </td>
@@ -49,9 +55,16 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
         </div><!-- /.box-footer -->
-        </form>
     </div>
     </div>
     </div>
     </div>
+
+     <script src="{{asset('public/js/jquery.min.js')}}"></script>
+    <script src="{{asset('public/js/instafilta.min.js')}}"></script>
+    <script>
+    $('#search-filtering').instaFilta({
+        scope: '#ex6'
+    });
+    </script>
 {% endblock %}

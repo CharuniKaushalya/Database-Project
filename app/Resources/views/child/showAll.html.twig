@@ -89,12 +89,12 @@
                             <td>{{ childrenOfPastPupil.from_grade }}</td>
                             <td>{{ childrenOfPastPupil.to_grade }}</td>
                             <td>
-                                <ul>
+                                <ul class="showedit">
                                     <li>
-                                        <a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}">show</a>
+                                        <a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}"><i class="fa fa-clipboard">show</i></a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">edit</a>
+                                        <a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                     </li>
                                 </ul>
                             </td>
@@ -130,12 +130,12 @@
                             <td>{{ childernOfStudyingAtPresent.addmission_grade }}</td>
                             <td>{{ childernOfStudyingAtPresent.grades_spent }}</td>
                             <td>
-                                <ul>
+                                <ul class="showedit">
                                     <li>
-                                        <a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}">show</a>
+                                        <a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}"><i class="fa fa-clipboard">show</i></a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}">edit</a>
+                                        <a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                     </li>
                                 </ul>
                             </td>
@@ -171,12 +171,12 @@
                                 <td>{% if childrenOfStaff['diff_to_year'] %}{{ childrenOfStaff['diff_to_year']|date('Y-m-d') }}{% endif %}</td>
                                 <td>{% if childrenOfStaff['un_utilized_leave'] %}{{ childrenOfStaff['un_utilized_leave']|date('Y-m-d') }}{% endif %}</td>
                                 <td>
-                                    <ul>
+                                    <ul class="showedit">
                                         <li>
-                                            <a href="{{ path('childrenofstaff_show', { 'id': childrenOfStaff['id'] }) }}">show</a>
+                                            <a href="{{ path('childrenofstaff_show', { 'id': childrenOfStaff['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('childrenofstaff_edit', { 'id': childrenOfStaff.id }) }}">edit</a>
+                                            <a href="{{ path('childrenofstaff_edit', { 'id': childrenOfStaff.id }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                         </li>
                                     </ul>
                                 </td>
@@ -213,12 +213,12 @@
                             <td>{{ childrenOfOtoeo['no_scl_addmitted'] }}</td>
                             
                             <td>
-                                <ul>
+                                <ul class="showedit">
                                     <li>
-                                        <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}">show</a>
+                                        <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}">edit</a>
+                                        <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                     </li>
                                 </ul>
                             </td>

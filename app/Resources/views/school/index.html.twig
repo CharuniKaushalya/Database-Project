@@ -12,12 +12,19 @@
     <div class="box box-info">
         <div class="box-header with-border">
              <h3 class="box-title">School List</h3>
-             <button type="submit" class="btn btn-info pull-right"><a href="{{ path('school_new') }}">Create a new entry</a></button>
+             <a type="submit" class="btn btn-info pull-right" href="{{ path('school_new') }}">Create a new entry</a>
         </div><!-- /.box-header -->
          <!-- form start -->
         <form class="form-horizontal">
-        <div class="box-body">
-            <table class="table">
+        <div class="box-body" id="ex6">
+            <div class="form-group">
+                    <div class="col-sm-4">
+                        <fieldset class="controls">
+                             <input id="search-filtering" class="form-control" placeholder="Type here to filter" type="text">
+                        </fieldset>
+                    </div>
+            </div>
+            <table class="mytable table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -31,7 +38,7 @@
                 </thead>
                 <tbody>
                 {% for school in schools %}
-                    <tr>
+                    <tr class="instafilta-target">
                         <td><a href="{{ path('school_show', { 'id': school.id }) }}">{{ school['name'] }}</a></td>
                         <td>{{ school['address'] }}</td>
                         <td>{{ school['tot_students'] }}</td>
@@ -39,12 +46,12 @@
                         <td>{% if school['start_date'] %}{{ school['start_date']|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ school['id'] }}</td>
                         <td>
-                            <ul>
+                            <ul class="showedit">
                                 <li>
-                                    <a href="{{ path('school_show', { 'id': school['id'] }) }}">show</a>
+                                    <a href="{{ path('school_show', { 'id': school['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('school_edit', { 'id': school['id'] }) }}">edit</a>
+                                    <a href="{{ path('school_edit', { 'id': school['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                 </li>
                             </ul>
                         </td>
@@ -60,4 +67,26 @@
     </div>
     </div>
     </div>
+
+    <script src="{{asset('public/js/jquery.min.js')}}"></script>
+    <script src="{{asset('public/js/instafilta.min.js')}}"></script>
+    <script>
+    $('#search-filtering').instaFilta({
+        scope: '#ex6'
+    });
+    </script>
+
+
+    <div class="container">
+            <div class="form-group">
+                <label for="single">Single</label>
+                <input type="text" class="form-control" id="single" />
+        </div>
+            <div class="form-group">
+                <label for="multi">Multi</label>
+                <input type="text" class="form-control" id="multi" />
+        </div>
+    </div>
+    <script src="{{asset('public/js/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('public/js/auto.js')}}"></script>
 {% endblock %}
