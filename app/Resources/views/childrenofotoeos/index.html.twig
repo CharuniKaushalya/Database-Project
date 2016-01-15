@@ -41,12 +41,12 @@
                         <td>{{ childrenOfOtoeo['no_scl_addmitted'] }}</td>
                         
                         <td>
-                            <ul>
+                            <ul class="showedit">
                                 <li>
-                                    <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}">show</a>
+                                    <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}">edit</a>
+                                    <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                 </li>
                             </ul>
                         </td>
