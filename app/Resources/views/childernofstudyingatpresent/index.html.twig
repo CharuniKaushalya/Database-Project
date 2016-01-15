@@ -12,19 +12,19 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Children of Studying at Present Details</h3>
-                    <button type="submit" class="btn btn-info pull-right"><a href="{{ path('childernofstudyingatpresent_new') }}">Create a new entry</a></button>
+                    <a type="submit" class="btn btn-info pull-right" href="{{ path('childernofstudyingatpresent_new') }}">Create a new entry</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
 
-                <table class="table">
+                <table class=" mytable table">
                     <thead>
                         <tr>
-                            <th>Nameinfull</th>
-                            <th>Nameininitial</th>
+                            <th>Name in full</th>
+                            <th>Name in initial</th>
                             <th>Grade</th>
-                            <th>Addmissionno</th>
-                            <th>Addmissiongrade</th>
-                            <th>Gradesspent</th>
+                            <th>Addmission no</th>
+                            <th>Addmission grade</th>
+                            <th>Grades spent</th>
                             <th>Id</th>
                             <th>Actions</th>
                         </tr>
@@ -40,12 +40,12 @@
                             <td>{{ childernOfStudyingAtPresent.grades_spent }}</td>
                             <td>{{ childernOfStudyingAtPresent.id }}</td>
                             <td>
-                                <ul>
+                                <ul class="showedit">
                                     <li>
-                                        <a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}">show</a>
+                                        <a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}"><i class="fa fa-clipboard">show</i></a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}">edit</a>
+                                        <a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                     </li>
                                 </ul>
                             </td>

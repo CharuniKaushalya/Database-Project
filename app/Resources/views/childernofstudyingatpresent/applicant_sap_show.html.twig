@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Child Details</h3>
+                    <a class="btn btn-info pull-right"  href="{{ path('childernofstudyingatpresent_new', { 'id': id }) }}">Add a Children of Studying at Present</a>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+                    <table class=" mytable table">
+                        <thead>
+                            <tr>
+                                <th>Name in full</th>
+                                <th>Name in initial</th>
+                                <th>Grade</th>
+                                <th>Addmission no</th>
+                                <th>Addmission grade</th>
+                                <th>Grades spent</th>
+                                <th>Id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for childernOfStudyingAtPresent in childernOfStudyingAtPresents %}
+                            <tr>
+                                <td><a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}">{{ childernOfStudyingAtPresent.name_in_full }}</a></td>
+                                <td>{{ childernOfStudyingAtPresent.name_in_initial }}</td>
+                                <td>{{ childernOfStudyingAtPresent.grade }}</td>
+                                <td>{{ childernOfStudyingAtPresent.addmission_no }}</td>
+                                <td>{{ childernOfStudyingAtPresent.addmission_grade }}</td>
+                                <td>{{ childernOfStudyingAtPresent.grades_spent }}</td>
+                                <td>{{ childernOfStudyingAtPresent.id }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div><!-- /.box-body -->
+                <div class="box-footer">
+                <a class="btn btn-info pull-right"  value="Delete" href="{{ path('childrenofstaff_new', { 'id': id }) }}">Continue</a>
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}
