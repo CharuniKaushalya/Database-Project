@@ -222,23 +222,6 @@ class ApplicantController extends Controller
     
 }
 
-/*function connect(){
-    $connection = mysqli_connect("localhost","root","bit","db_project");
-    if(mysqli_connect_errno()){
-        die("Connection failed".mysqli_connect_error()." ".mysqli_connect_errno());
-    }
-    return $connection;
-}
-
-function colse_connection($connection){
-    if(isset($connection)){mysqli_close($connection);}
-}
-function confirm_query($result){
-    if (!$result) {
-    die("Database query failed");
-    }
-}*/
-
 function get_all_applicants(){
      $connection = connect();
     //2.perform query
@@ -283,17 +266,7 @@ function insert2($postData){
     $query .= ")";
     $result = mysqli_query($connection,$query);
     if ($result) {
-       // echo dump($result);
          $id = mysqli_insert_id($connection);
-        /*$query = "select id from applicant where name_in_full= '{$gardian->getNameInFull()}' and nic = '{$gardian->getNic()}' LIMIT 1";
-        $result = mysqli_query($connection,$query);
-        confirm_query($result);
-        $row = mysqli_fetch_assoc($result);
-        
-        colse_connection($connection);
-       
-        echo $id;
-        //echo dump($row);*/
         return $id;
     }
     colse_connection($connection);

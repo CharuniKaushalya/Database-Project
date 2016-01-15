@@ -8,18 +8,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ApplicationBundle\Entity\User;
 use ApplicationBundle\Form\UserType;
 use ApplicationBundle\Modal\Login;
+use ApplicationBundle\Includes\roleCon;
+use ApplicationBundle\Includes\userConnection;
 require_once 'connection.php';
 
 /**
  * User controller.
  *
  */
+
 class UserController extends Controller
 {
     /**
      * Lists all User entities.
      *
      */
+    private $role_connection;
+    private $user_connection;
+
+    public function __construct(){
+        $this->role_connection = new roleCon();
+        $this->user_connection = new userConnection();
+    }
+
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -41,20 +52,15 @@ class UserController extends Controller
         $form = $this->createForm(new UserType(), $user);
         $form->handleRequest($request);
 
-$postData = $request->request->all();
-            echo dump($postData);
+        $postData = $request->request->all();
         if (isset($postData['submit'])) {
             
-            insertuser($postData);
-            echo $postData['role'] ;
+            $this->user_connection->insertuser($postData);
 
             return $this->redirectToRoute('user_index');
         }
-        $result = get_all_roles();
-        $roles = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            array_push ($roles, $row);
-        }
+        $roles = $this->role_connection->get_all_roles();
+        
 
         return $this->render('user/new.html.twig', array(
             'user' => $user,
@@ -68,15 +74,20 @@ $postData = $request->request->all();
     }
     public function loginAction(Request $request)
     {
+        
         $session = $this->getRequest()->getSession();
-        $em = $this->getDoctrine()->getEntityManager();
-        $repository = $em->getRepository('ApplicationBundle:User');
+       // $em = $this->getDoctrine()->getEntityManager();
+        //$repository = $em->getRepository('ApplicationBundle:User');
         if ($request->getMethod() == 'POST') {
             $session->clear();
             $username = $request->get('username');
             $password = sha1($request->get('password'));
             $remember = $request->get('remember');
-            $user = $repository->findOneBy(array('userName' => $username, 'password' => $password));
+            $user = $this->user_connection->getUserById($username,$password);
+            $emp_no = $user['emp_no'];
+            $roleId = $user['role_id'];
+            $id = $user['id'];
+            //$user = $repository->findOneBy(array('userName' => $username, 'password' => $password));$user->getEmpNo()
             if ($user) {
                 if ($remember == 'remember-me') {
                     
@@ -84,9 +95,18 @@ $postData = $request->request->all();
                 $login = new Login();
                 $login->setUsername($username);
                 $login->setPassword($password);
-                $login->setEmpNo($user->getEmpNo());
+                $login->setEmpNo($emp_no);
+                $login->setRoleId($roleId);
+                $login->setId($id);
                 $session->set('login', $login);
-                return $this->render('user/welcome.html.twig', array('name' => $user->getEmpNo()));
+
+                $previleges = $this->role_connection->get_preveliges_by_role_id($roleId);
+
+                
+                return $this->render('user/welcome.html.twig', array(
+                    'name' => $emp_no,
+                    'previleges' => $previleges
+                ));
             } else {
                 return $this->render('user/login.html.twig', array('name' => 'Login Error'));
             }
@@ -95,9 +115,17 @@ $postData = $request->request->all();
                 $login = $session->get('login');
                 $username = $login->getUsername();
                 $password = $login->getPassword();
-                $user = $repository->findOneBy(array('userName' => $username, 'password' => $password));
+                $user = $this->user_connection->getUserById($username,$password);
+                $roleId = $user['role_id'];
+                //$user = $repository->findOneBy(array('userName' => $username, 'password' => $password));
+
+                $previleges = $this->role_connection->get_preveliges_by_role_id($roleId);
+
                 if ($user) {
-                    return $this->render('user/welcome.html.twig', array('name' => $user->getEmpNo()));
+                    return $this->render('user/welcome.html.twig', array(
+                        'name' => $login->getEmpNo(),
+                        'previleges' => $previleges
+                    ));
                 }
             }
         }
@@ -107,7 +135,7 @@ $postData = $request->request->all();
     public function logoutAction(Request $request) {
         $session = $this->getRequest()->getSession();
         $session->clear();
-        return $this->render('user/login.html.twig');
+        return $this->render('default/home.html.twig');
     }
 
     /**
@@ -182,38 +210,4 @@ $postData = $request->request->all();
             ->getForm()
         ;
     }
-}
-function insertuser($postData){
-    
-    echo dump($postData);
-    $connection = connect();
-    echo dump($postData);
-    //$gardian = new Applicant();
-    $applicant = $postData;
-    $NameInFull = mysqli_real_escape_string($connection,$applicant['name_full']);
-    $NameInInitials = mysqli_real_escape_string($connection,$applicant['name_initials']);
-    $username= mysqli_real_escape_string($connection,$applicant['username']);
-    $password = sha1(mysqli_real_escape_string($connection,$applicant['password']));
-    $emp_no = mysqli_real_escape_string($connection,$applicant['emp_no']);
-    $role_id = $applicant['role'];
-    $query = "insert into user (";
-    $query .= " name_in_full,name_in_intials, user_name,password, emp_no,role_id";
-    $query .= ") values( ";
-    $query .= " '{$NameInFull}','{$NameInInitials}','{$username}','{$password}','{$emp_no}',{$role_id}";
-    $query .= ")";
-    $result = mysqli_query($connection,$query);
-    if ($result) {
-    }
-    colse_connection($connection);
-    return null;
-}
-function get_all_roles(){
-     $connection = connect();
-    //2.perform query
-    $query = "SELECT * from role";
-    $result = mysqli_query($connection,$query);
-    confirm_query($result);
-    colse_connection($connection);
-    return $result;
-
 }

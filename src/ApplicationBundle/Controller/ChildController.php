@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ApplicationBundle\Entity\Child;
 use ApplicationBundle\Form\ChildType;
+use ApplicationBundle\Includes\ChildConnection;
 require_once 'connection.php';
 /**
  * Child controller.
@@ -16,6 +17,13 @@ require_once 'connection.php';
  */
 class ChildController extends Controller
 {
+    private $child_connection;
+
+    public function __construct(){
+        $this->child_connection = new ChildConnection();
+    }
+
+    //role left outer join role_has_previlege on role.id = role_has_previlege.role_id
     /**
      * Lists all Child entities.
      *
@@ -24,15 +32,17 @@ class ChildController extends Controller
      */
     public function indexAction()
     {
-        /*$em = $this->getDoctrine()->getManager();
+        $children = $this->child_connection->get_all_children();
+        $session = $this->getRequest()->getSession();
+        if ($session->has('login')) {
+            $login = $session->get('login');
+            $role_id = $login->getRoleId();
+            $user_id = $login->getId();
+            if($role_id == 3 || $role_id == 4) {
+                $children = $this->child_connection->get_all_children_by_role_id($user_id);
+            }
 
-        $children = $em->getRepository('ApplicationBundle:Child')->findAll();*/
-        $result = get_all_children();
-        $children = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            array_push ($children, $row);
         }
-
         return $this->render('child/index.html.twig', array(
             'children' => $children,
         ));
