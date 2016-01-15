@@ -1,0 +1,244 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+<style>
+   
+    </style>
+    <h1></h1>
+    <div class="container-fluid">
+    <div class="row" style="height:20px;"> 
+    </div>
+    <div class="row"> 
+        <div class="col-md-1"> 
+        </div>
+        <div class="col-md-10"> 
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Child Details</h3>
+                    <a href="{{ path('child_index') }}" class="btn btn-info pull-right">Back to the list</a>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <h1 class="myh">01) Basic Details</h1>
+                    <table class="mytable">
+                        <tbody>
+                            <tr>
+                                <th class="col-sm-2 control-label">Id</th>
+                                <td class="col-sm-8 control-label">{{ child.id }}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Name in Full</th>
+                                <td class="col-sm-10 control-label">{{ child.nameInFull }}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Name in Intials</th>
+                                <td class="col-sm-10 control-label">{{ child.nameInIntials }}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Sex</th>
+                                <td class="col-sm-10 control-label">{{ child.sex }}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Religion</th>
+                                <td class="col-sm-10 control-label">{{ child.religion }}</td>
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Medium of Learning</th>
+                                {% if  child.mediumOfLearning == 1 %}
+                                <td class="col-sm-10 control-label">Sinhala</td>
+                                {% elseif child.mediumOfLearning == 2 %}
+                                <td class="col-sm-10 control-label">English</td>
+                                {% else %}
+                                <td class="col-sm-10 control-label">Tamil</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th class="col-sm-2 control-label">Date of Birth</th>
+                                <td class="col-sm-10 control-label">{% if child.dob %}{{ child.dob|date('Y-m-d') }}{% endif %}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    </br>
+                    <hr>
+
+                    <h1>02) Children of Past Pupils</h1></br>
+                    {% if childrenOfPastPupil|length >= 1 %}
+                    <table class="mytable table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Name in Full</th>
+                            <th rowspan="2">Name in Initial</th>
+                            <th colspan="4">Period spend in the school as a pupil</th>      
+                            <th rowspan="2">Actions</th>
+                        </tr>
+                        <tr>
+                        <th>From Year</th>
+                        <th>To Year</th>
+                        <th>From Grade</th>
+                        <th>To Grade</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for childrenOfPastPupil in childrenOfPastPupil %}
+                        <tr>
+                            <td><a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}">{{ childrenOfPastPupil.name_in_full }}</td>
+                            <td>{{ childrenOfPastPupil.name_in_initial }}</td>
+                            <td>{% if childrenOfPastPupil.from_year %}{{ childrenOfPastPupil.from_year|date('Y-m-d') }}{% endif %}</td>
+                            <td>{% if childrenOfPastPupil.to_year %}{{ childrenOfPastPupil.to_year|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ childrenOfPastPupil.from_grade }}</td>
+                            <td>{{ childrenOfPastPupil.to_grade }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <label class="col-sm-2 control-label">No result foound regarding this category</label>
+                {% endif %}
+
+                </br><hr><h1>03) Brothers/Sisters of the students who are studing in the school at present</h1></br>
+                    {% if childernOfStudyingAtPresent|length >= 1 %}
+                    <table class="mytable table">
+                    <thead>
+                        <tr>
+                            <th>Name in Full</th>
+                            <th>Name in Initial</th>
+                            <th>Grade</th>
+                            <th>Addmission No</th>
+                            <th>Addmission Grade</th>
+                            <th>Grades Spent</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for childernOfStudyingAtPresent in childernOfStudyingAtPresent %}
+                        <tr>
+                            <td><a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}">{{ childernOfStudyingAtPresent.name_in_full }}</a></td>
+                            <td>{{ childernOfStudyingAtPresent.name_in_initial }}</td>
+                            <td>{{ childernOfStudyingAtPresent.grade }}</td>
+                            <td>{{ childernOfStudyingAtPresent.addmission_no }}</td>
+                            <td>{{ childernOfStudyingAtPresent.addmission_grade }}</td>
+                            <td>{{ childernOfStudyingAtPresent.grades_spent }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('childernofstudyingatpresent_show', { 'id': childernOfStudyingAtPresent.id }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('childernofstudyingatpresent_edit', { 'id': childernOfStudyingAtPresent.id }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <label class="col-sm-2 control-label">No result foound regarding this category</label>
+                {% endif %}
+
+                </br><hr><h1>04) Children of persons belonging to the staff in an institution directly involved in school education</h1></br>
+                {% if childrenOfStaff|length >= 1 %}
+                <table class="mytable table">
+                        <thead>
+                            <tr>
+                                <th>Emp id</th>
+                                <th>Period of service</th>
+                                <th>Period of difficult school service</th>
+                                <th>Difficult service from year</th>
+                                <th>Difficult service to year</th>
+                                <th>Unutilized leave</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for childrenOfStaff in childrenOfStaff %}
+                            <tr>
+                                <td><a href="{{ path('childrenofstaff_show', { 'id': childrenOfStaff['id'] }) }}">{{ childrenOfStaff['emp_id'] }}</a></td>
+                                <td>{{ childrenOfStaff['period_of_service'] }}</td>
+                                <td>{{ childrenOfStaff['period_of_difficult_school_service'] }}</td>
+                                <td>{% if childrenOfStaff['diff_from_year'] %}{{ childrenOfStaff['diff_from_year']|date('Y-m-d') }}{% endif %}</td>
+                                <td>{% if childrenOfStaff['diff_to_year'] %}{{ childrenOfStaff['diff_to_year']|date('Y-m-d') }}{% endif %}</td>
+                                <td>{% if childrenOfStaff['un_utilized_leave'] %}{{ childrenOfStaff['un_utilized_leave']|date('Y-m-d') }}{% endif %}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('childrenofstaff_show', { 'id': childrenOfStaff['id'] }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('childrenofstaff_edit', { 'id': childrenOfStaff.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                <label class="col-sm-2 control-label">No result foound regarding this category</label>
+                {% endif %}
+
+
+                </br><hr><h1>05) Children of officers trasferred on exigencies of services</h1></br>
+                {% if childrenOfOtoeo|length >= 1 %}
+                <table class="mytable table"> 
+                    <thead>
+                        <tr>
+                            <th>Last transfer received</th>
+                            <th>Before Address workplace</th>
+                            <th>After address wrkplace</th>
+                            <th>Distance</th>
+                            <th>No school addmitted</th>
+                            
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for childrenOfOtoeo in childrenOfOtoeo %}
+                        <tr>
+                            <td>{% if childrenOfOtoeo['last_transfer_received'] %}{{ childrenOfOtoeo['last_transfer_received']|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ childrenOfOtoeo['before_address_wrk_place'] }}</td>
+                            <td>{{ childrenOfOtoeo['after_address_wrk_place'] }}</td>
+                            <td>{{ childrenOfOtoeo['distance'] }}</td>
+                            <td>{{ childrenOfOtoeo['no_scl_addmitted'] }}</td>
+                            
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('childrenofotoeos_show', { 'id': childrenOfOtoeo['id'] }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('childrenofotoeos_edit', { 'id': childrenOfOtoeo['id'] }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <label class="col-sm-2 control-label">No result foound regarding this category</label>
+                {% endif %}
+
+                
+
+
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                
+                </div><!-- /.box-footer -->
+              </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

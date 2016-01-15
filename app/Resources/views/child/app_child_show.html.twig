@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Child list</h1>
 <div class="container-fluid">
     <div class="row" style="height:20px;"> 
     </div>
@@ -12,19 +11,19 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Child Details</h3>
-                    <button class="btn btn-info pull-right"  value="Delete"><a href="{{ path('child_new', { 'id': id }) }}">Add a Child</a></button>
+                    <a class="btn btn-info pull-right"  href="{{ path('child_new', { 'id': id }) }}">Add a Child</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
 
-                    <table class="table">
+                    <table class=" mytable table">
                         <thead>
                             <tr>
-                                <th>Nameinfull</th>
-                                <th>Nameinintials</th>
+                                <th>Name in Full</th>
+                                <th>Name in Intials</th>
                                 <th>Sex</th>
                                 <th>Religion</th>
-                                <th>Mediumoflearning</th>
-                                <th>Dob</th>
+                                <th>Medium of Learning</th>
+                                <th>Date of Birth</th>
                                 <th>Id</th>
                                 <th>Actions</th>
                             </tr>
@@ -36,7 +35,13 @@
                                 <td>{{ child.nameInIntials }}</td>
                                 <td>{{ child.sex }}</td>
                                 <td>{{ child.religion }}</td>
-                                <td>{{ child.mediumOfLearning }}</td>
+                                {% if  child.mediumOfLearning == 1 %}
+                                <td>Sinhala</td>
+                                {% elseif child.mediumOfLearning == 2 %}
+                                <td>English</td>
+                                {% else %}
+                                <td>Tamil</td>
+                                {% endif %}
                                 <td>{% if child.dob %}{{ child.dob|date('Y-m-d') }}{% endif %}</td>
                                 <td>{{ child.id }}</td>
                                 <td>
