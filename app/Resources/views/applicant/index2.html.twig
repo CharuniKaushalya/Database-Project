@@ -12,12 +12,13 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Gardian Details</h3>
-                    <button class="btn btn-info pull-right"><a href="{{ path('applicant_new') }}">Create a new entry</a></button>
+                    <a class="btn btn-info pull-right" href="{{ path('applicant_new') }}">Create a new entry</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table">
+                    <table class="mytable table">
                         <thead>
                             <tr>
+                                 <th>Id</th>
                                 <th>Name in full</th>
                                 <th>Name in intials</th>
                                 <th>Permanent Address</th>
@@ -29,7 +30,6 @@
                                 <th>Whether srilankan</th>
                                 <th>No Years In Electoral Register</th>
                                 <th>No Schools Located Closer</th>
-                                <th>Id</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,14 +48,13 @@
                                 <td>{% if applicant['wether_srilankan'] %}Yes{% else %}No{% endif %}</td>
                                 <td>{{ applicant['no_years_in_electoral_register'] }}</td>
                                 <td>{{ applicant['no_schools_located_closer'] }}</td>
-                                <td>{{ applicant['id'] }}</td>
                                 <td>
-                                    <ul>
+                                    <ul class="showedit">
                                         <li>
-                                            <a href="{{ path('applicant_show', { 'id': applicant['id'] }) }}">show</a>
+                                            <a href="{{ path('applicant_show', { 'id': applicant['id'] }) }}"><i class="fa fa-clipboard">show</i></a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('applicant_edit', { 'id': applicant['id'] }) }}">edit</a>
+                                            <a href="{{ path('applicant_edit', { 'id': applicant['id'] }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
                                         </li>
                                     </ul>
                                 </td>

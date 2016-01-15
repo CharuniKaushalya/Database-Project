@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Applicant</h1>
     <div class="container-fluid">
     <div class="row" style="height:20px;"> 
     </div>
@@ -12,29 +11,34 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">Gardian Details</h3>
-                    <button class="btn btn-info pull-right"><a href="{{ path('applicant_new') }}">Create a new Applicant</a></button>
+                    <a class="btn btn-info pull-right" href="{{ path('applicant_new') }}">Create a new Applicant</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <table class="table">
+                    <table >
                         <tbody>
+
                             <tr>
-                                <th>Nameinfull</th>
+                                <th>Id</th>
+                                <td>{{ applicant.id }}</td>
+                            </tr> 
+                            <tr>
+                                <th>Name in Full</th>
                                 <td>{{ applicant.nameInFull }}</td>
                             </tr>
                             <tr>
-                                <th>Nameininitials</th>
+                                <th>Name in Initials</th>
                                 <td>{{ applicant.nameInInitials }}</td>
                             </tr>
                             <tr>
-                                <th>Permanentaddress</th>
+                                <th>Permanent Address</th>
                                 <td>{{ applicant.permanentAddress }}</td>
                             </tr>
                             <tr>
-                                <th>Gramaniladaridivion</th>
+                                <th>Grama Niladari Divion</th>
                                 <td>{{ applicant.gramaNiladariDivion }}</td>
                             </tr>
                             <tr>
-                                <th>Divsionalscretaryarea</th>
+                                <th>Divsional Scretary Area</th>
                                 <td>{{ applicant.divsionalScretaryArea }}</td>
                             </tr>
                             <tr>
@@ -42,7 +46,7 @@
                                 <td>{{ applicant.district }}</td>
                             </tr>
                             <tr>
-                                <th>Dob</th>
+                                <th>Doate of Birth</th>
                                 <td>{% if applicant.dob %}{{ applicant.dob|date('Y-m-d H:i:s') }}{% endif %}</td>
                             </tr>
                             <tr>
@@ -54,28 +58,21 @@
                                 <td>{% if applicant.wetherSrilankan %}Yes{% else %}No{% endif %}</td>
                             </tr>
                             <tr>
-                                <th>Noyearsinelectoralregister</th>
+                                <th>No Years In Electoral Register</th>
                                 <td>{{ applicant.noYearsInElectoralRegister }}</td>
                             </tr>
                             <tr>
-                                <th>Noschoolslocatedcloser</th>
+                                <th>No Schools Located Closer</th>
                                 <td>{{ applicant.noSchoolsLocatedCloser }}</td>
-                            </tr>
-                            <tr>
-                                <th>Id</th>
-                                <td>{{ applicant.id }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer">                     
-                    <button type="submit" class="btn btn-info pull-right"><a href="{{ path('applicant_edit', { 'id': applicant.id }) }}">Edit</a></button>
+                    <a type="submit" class="btn btn-info pull-right" href="{{ path('applicant_edit', { 'id': applicant.id }) }}">Edit</a>
                     {{ form_start(delete_form) }}
-                        <input type="submit" class="btn btn-danger pull-right" stlye="margin-right:12px" value="Delete">
+                        <input type="submit" class="btn btn-danger" stlye="margin-right:12px" value="Delete">
                     {{ form_end(delete_form) }}
-
-
-                    <button class="btn btn-default"><a href="{{ path('applicant_index') }}">Back</a></button>
 
                 </div><!-- /.box-footer -->
               </div>
