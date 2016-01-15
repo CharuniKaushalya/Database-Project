@@ -4,6 +4,8 @@ class Login {
     private $username;
     private $password;
     private $empNo;
+    private $roleid;
+    private $id;
     public function getUsername() {
         return $this->username;
     }
@@ -27,6 +29,24 @@ class Login {
     public function getEmpNo()
     {
         return $this->empNo;
+    }
+
+    public function setRoleId($roleid)
+    {
+        $this->roleid = $roleid;
+    }
+    public function getRoleId()
+    {
+        return $this->roleid;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
     }
 
 
