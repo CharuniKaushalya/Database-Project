@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ApplicationBundle\Entity\Role;
-include 'connection.php';
+require_once 'connection.php';
 
 class RoleController extends Controller
 {

@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ApplicationBundle\Entity\ChildrenOfStaff;
 use ApplicationBundle\Form\ChildrenOfStaffType;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * ChildrenOfStaff controller.

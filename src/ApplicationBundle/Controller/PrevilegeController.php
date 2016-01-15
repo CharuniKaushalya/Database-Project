@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ApplicationBundle\Entity\Previlege;
-include 'connection.php';
+require_once 'connection.php';
 
 class PrevilegeController extends Controller
 {

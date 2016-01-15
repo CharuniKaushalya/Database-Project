@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ApplicationBundle\Entity\School;
 use ApplicationBundle\Form\SchoolType;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * School controller.

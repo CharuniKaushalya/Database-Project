@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ApplicationBundle\Entity\ChildernOfStudyingAtPresent;
 use ApplicationBundle\Form\ChildernOfStudyingAtPresentType;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * ChildernOfStudyingAtPresent controller.
@@ -44,7 +44,7 @@ class ChildernOfStudyingAtPresentController extends Controller
         $postData = $request->request->all();
         if (isset($postData['submit'])) {
             $id = insert_children_of_studying_at_present($postData,$Applicant_id);
-            return $this->redirectToRoute('childernofstudyingatpresent_new', array('id' => $Applicant_id));
+            return $this->redirectToRoute('applicant_sap_show', array('id' => $Applicant_id));
         }
 
         $result = get_schools();
@@ -58,6 +58,7 @@ class ChildernOfStudyingAtPresentController extends Controller
             'childernOfStudyingAtPresent' => $childernOfStudyingAtPresent,
             'form' => $form->createView(),
             'schools' => $schools,
+            'id' => $Applicant_id,
         ));
     }
 
@@ -72,6 +73,25 @@ class ChildernOfStudyingAtPresentController extends Controller
         return $this->render('childernofstudyingatpresent/show.html.twig', array(
             'childernOfStudyingAtPresent' => $childernOfStudyingAtPresent,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    public function showASAPAction(Request $request)
+    {
+        $id = $request->get('id');
+        $connection = connect();
+        $query = "SELECT * from childern_of_studying_at_present where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childernOfStudyingAtPresents = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childernOfStudyingAtPresents, $row);
+        }
+        colse_connection($connection);
+
+        return $this->render('childernofstudyingatpresent/applicant_sap_show.html.twig', array(
+            'childernOfStudyingAtPresents' => $childernOfStudyingAtPresents,
+            'id' => $id,
         ));
     }
 
@@ -168,13 +188,8 @@ function insert_children_of_studying_at_present($postData,$Applicant_id){
     echo  $query;
     $result = mysqli_query($connection,$query);
     if ($result) {
-        $query = "select id from childern_of_studying_at_present where name_in_full= '{$childrenofstudyingatpresent->getNameInFull()}' LIMIT 1";
-        echo  $query;
-        $result = mysqli_query($connection,$query);
-        confirm_query($result);
-        $row = mysqli_fetch_assoc($result);
-        colse_connection($connection);
-        return $row['id'];
+        $id = mysqli_insert_id($connection);
+        return $id;
     }
     return null;
 

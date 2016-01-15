@@ -48,7 +48,7 @@ class ApplicantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $postData = $request->request->all();
             $id = insert2($postData);
-            return $this->redirectToRoute('childrenofstaff_new', array('id' => $id));
+            return $this->redirectToRoute('childrenofpastpupils_new', array('id' => $id));
         }
 
         return $this->render('applicant/new.html.twig', array(
@@ -284,13 +284,17 @@ function insert2($postData){
     $result = mysqli_query($connection,$query);
     if ($result) {
        // echo dump($result);
-        $query = "select id from applicant where name_in_full= '{$gardian->getNameInFull()}' and nic = '{$gardian->getNic()}' LIMIT 1";
+         $id = mysqli_insert_id($connection);
+        /*$query = "select id from applicant where name_in_full= '{$gardian->getNameInFull()}' and nic = '{$gardian->getNic()}' LIMIT 1";
         $result = mysqli_query($connection,$query);
         confirm_query($result);
         $row = mysqli_fetch_assoc($result);
+        
         colse_connection($connection);
-        //echo dump($row);
-        return $row['id'];
+       
+        echo $id;
+        //echo dump($row);*/
+        return $id;
     }
     colse_connection($connection);
     return null;

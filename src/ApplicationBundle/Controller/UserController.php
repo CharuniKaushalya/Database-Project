@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ApplicationBundle\Entity\User;
 use ApplicationBundle\Form\UserType;
 use ApplicationBundle\Modal\Login;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * User controller.

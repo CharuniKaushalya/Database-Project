@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ApplicationBundle\Entity\ChildrenOfPastPupils;
 use ApplicationBundle\Form\ChildrenOfPastPupilsType;
-include 'connection.php';
+require_once 'connection.php';
 
 /**
  * ChildrenOfPastPupils controller.
@@ -46,7 +46,7 @@ class ChildrenOfPastPupilsController extends Controller
         if (isset($postData['submit'])) {
             dump($postData);
             $id = insert_children_of_past_pupils($postData,$Applicant_id);
-            return $this->redirectToRoute('childrenofpastpupils_show', array('id' => $id));
+            return $this->redirectToRoute('applicant_pp_show', array('id' => $Applicant_id));
         }
 
         $result = get_schools();
@@ -60,6 +60,7 @@ class ChildrenOfPastPupilsController extends Controller
             'childrenOfPastPupil' => $childrenOfPastPupil,
             'form' => $form->createView(),
             'schools' => $schools,
+            'id' => $Applicant_id,
         ));
     }
 
@@ -74,6 +75,25 @@ class ChildrenOfPastPupilsController extends Controller
         return $this->render('childrenofpastpupils/show.html.twig', array(
             'childrenOfPastPupil' => $childrenOfPastPupil,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+     public function showAPPAction(Request $request)
+    {
+        $id = $request->get('id');
+        $connection = connect();
+        $query = "SELECT * from children_of_past_pupils where applicant_id = '{$id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfPastPupils = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childrenOfPastPupils, $row);
+        }
+        colse_connection($connection);
+
+        return $this->render('childrenofpastpupils/applicant_pp_show.html.twig', array(
+            'childrenOfPastPupils' => $childrenOfPastPupils,
+            'id' => $id,
         ));
     }
 
@@ -171,13 +191,8 @@ function insert_children_of_past_pupils($postData,$Applicant_id){
     $query .= ")";
     $result = mysqli_query($connection,$query);
     if ($result) {
-        $query = "select id from children_of_past_pupils where name_in_full= '{$childrenofpastpupils->getNameInFull()}' LIMIT 1";
-        $result = mysqli_query($connection,$query);
-        if (!$result) {
-            die("Database query failed");
-        }
-        $row = mysqli_fetch_assoc($result);
-        return $row['id'];
+        $id = mysqli_insert_id($connection);
+        return $id;
     }
     return null;
 

@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ApplicationBundle\Entity\Child;
 use ApplicationBundle\Form\ChildType;
-include 'connection.php';
+require_once 'connection.php';
 /**
  * Child controller.
  *
@@ -50,7 +50,7 @@ class ChildController extends Controller
         $form = $this->createForm(new ChildType(), $child);
         $form->handleRequest($request);
 
-        $id = $request->get('applicant_id');
+        $id = $request->get('id');
         $applicant = $this->getDoctrine()->getRepository('ApplicationBundle:Applicant')->find($id);
         $child->setApplicant($applicant);
 
@@ -81,16 +81,18 @@ class ChildController extends Controller
 
         $postData = $request->request->all();
         if (isset($postData['submit']) && isset($postData['school'])) {
-            $count = 0;
+            $count = 1;
             foreach ($postData['school'] as $school) {
-                if(isset($school['sid']) && $school['id'] != ""){
+                if(isset($school['sid'])){
                     $connection = connect();
-                    $no = $school['id'];
+                    dump($school);
+                    $no = $count;
+                    $distance = $school['distance'];
                     $sch_id = $school['sid'];
                     $query = "insert into child_has_school (";
-                    $query .= " child_id, school_id, preferrence_no";
+                    $query .= " child_id, school_id, preferrence_no, distance";
                     $query .= ") values( ";
-                    $query .= " '{$child_id}','{$sch_id}','{$no}'";
+                    $query .= " '{$child_id}','{$sch_id}','{$no}',{$distance}";
                     $query .= ")";
                     $result = mysqli_query($connection,$query);
                     colse_connection($connection);
@@ -102,7 +104,7 @@ class ChildController extends Controller
         }
 
         
-        return $this->render('child/preferrence.html.twig', array(
+        return $this->render('child/prefer.html.twig', array(
             'schools' => $schools,
             'id' => $Applicant_id,
             'child_id' => $child_id
@@ -137,6 +139,58 @@ class ChildController extends Controller
         return $this->render('child/app_child_show.html.twig', array(
             'children' => $children,
             'id' => $id,
+        ));
+    }
+
+
+    public function showAllAction(Child $child)
+    {
+        $id = $child->getId();
+        $applicant_id = $child->getApplicant()->getId();
+        $connection = connect();
+
+        $query = "SELECT * from children_of_staff where applicant_id = '{$applicant_id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfStaff = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childrenOfStaff, $row);
+        }
+
+        $query = "SELECT * from childern_of_studying_at_present where applicant_id = '{$applicant_id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childernOfStudyingAtPresent = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childernOfStudyingAtPresent, $row);
+        }
+
+        $query = "SELECT * from children_of_otoeos where applicant_id = '{$applicant_id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfOtoeo = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childrenOfOtoeo, $row);
+        }
+
+        $query = "SELECT * from children_of_past_pupils where applicant_id = '{$applicant_id}'";
+        $result = mysqli_query($connection,$query);
+        confirm_query($result);
+        $childrenOfPastPupil = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push ($childrenOfPastPupil, $row);
+        }
+        colse_connection($connection);
+        
+        //$childrenOfPastPupil = $this->getDoctrine()->getRepository('ApplicationBundle:ChildrenOfPastPupils')->find($applicant);
+
+        return $this->render('child/showall.html.twig', array(
+            'child' => $child,
+            'childrenOfStaff' => $childrenOfStaff,
+            'childernOfStudyingAtPresent' => $childernOfStudyingAtPresent,
+            'childrenOfOtoeo' => $childrenOfOtoeo,
+            'childrenOfPastPupil' => $childrenOfPastPupil,
+
         ));
     }
 
