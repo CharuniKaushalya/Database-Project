@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1></h1>
 <div class="container-fluid">
     <div class="row" style="height:20px;"> 
     </div>
@@ -11,12 +10,12 @@
         <div class="col-md-10"> 
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Children of Past Pupils Details</h3>
-                    <button type="submit" class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_new') }}">Create a new entry</a></button>
+                    <h3 class="box-title">Child Details</h3>
+                    <a class="btn btn-info pull-right"  href="{{ path('childrenofpastpupils_new', { 'id': id }) }}">Add a Children of past pupils</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
 
-                <table class="mytable table">
+                    <table class="mytable table">
                     <thead>
                         <tr>
                             <th>Name in full</th>
@@ -26,7 +25,6 @@
                             <th>From grade</th>
                             <th>To grade</th>        
                             <th>Id</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,26 +37,18 @@
                             <td>{{ childrenOfPastPupil.from_grade }}</td>
                             <td>{{ childrenOfPastPupil.to_grade }}</td>
                             <td>{{ childrenOfPastPupil.id }}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('childrenofpastpupils_show', { 'id': childrenOfPastPupil.id }) }}"><i class="fa fa-clipboard">show</i></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}"><i class="fa fa-pencil-square-o">edit</i></a>
-                                    </li>
-                                </ul>
-                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-            </div><!-- /.box-body -->
+                    </div><!-- /.box-body -->
                 <div class="box-footer">
+                <a class="btn btn-info pull-right"  value="Delete" href="{{ path('childernofstudyingatpresent_new', { 'id': id }) }}">Continue</a>
                 </div><!-- /.box-footer -->
               </div>
             </div>
         </div>
     </div>
 
+    
 {% endblock %}

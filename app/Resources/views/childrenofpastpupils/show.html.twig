@@ -11,38 +11,38 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                      <h3 class="box-title"></h3>
-                     <button  class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_index') }}">Back to the list</a></button>
+                     <ba  class="btn btn-info pull-right" href="{{ path('childrenofpastpupils_index') }}">Back to the list</a>
                 </div><!-- /.box-header -->
                     <div class="box-body">
 
                    <table class="col-md-8 table-hover record_properties">
                     <tbody>
                         <tr>
-                            <th>Fromyear</th>
+                            <th>From year</th>
                             <td>{% if childrenOfPastPupil.fromYear %}{{ childrenOfPastPupil.fromYear|date('Y-m-d') }}{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Toyear</th>
+                            <th>To year</th>
                             <td>{% if childrenOfPastPupil.toYear %}{{ childrenOfPastPupil.toYear|date('Y-m-d') }}{% endif %}</td>
                         </tr>
                         <tr>
-                            <th>Fromgrade</th>
+                            <th>From grade</th>
                             <td>{{ childrenOfPastPupil.fromGrade }}</td>
                         </tr>
                         <tr>
-                            <th>Tograde</th>
+                            <th>To grade</th>
                             <td>{{ childrenOfPastPupil.toGrade }}</td>
                         </tr>
                         <tr>
-                            <th>Nameinfull</th>
+                            <th>Name in full</th>
                             <td>{{ childrenOfPastPupil.nameInFull }}</td>
                         </tr>
                         <tr>
-                            <th>Nameininitial</th>
+                            <th>Name in initial</th>
                             <td>{{ childrenOfPastPupil.nameInInitial }}</td>
                         </tr>
                         <tr>
-                            <th>Applicantapplicantno</th>
+                            <th>Applicant no</th>
                             <td>{{ childrenOfPastPupil.applicant.id }}</td>
                         </tr>
                         <tr>
@@ -53,7 +53,7 @@
                 </table>
                 </div><!-- /.box-body -->
                     <div class="box-footer">
-                         <button  class="btn btn-info pull-right"><a href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">Edit</a></button>
+                         <a  class="btn btn-info pull-right" href="{{ path('childrenofpastpupils_edit', { 'id': childrenOfPastPupil.id }) }}">Edit</a>
                         {{ form_start(delete_form) }}
                            
                             <input type="submit" class="btn btn-danger" value="Delete">
